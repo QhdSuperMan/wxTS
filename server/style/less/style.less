@@ -1,0 +1,826 @@
+@import  'resize.less';
+@import  'common.less';
+html::-webkit-scrollbar {display:none}
+// 动画
+.keyframes (rotateLeft,{
+    0%{
+        transform:rotate(0deg);
+    }
+    100% {
+        transform:rotate(360deg);
+    }
+});
+.keyframes (rotateRight,{
+    0%{
+        transform:rotate(0deg);
+    }
+    100% {
+        transform:rotate(-720deg);
+    }
+});
+.keyframes (rotateL,{
+    0%{
+        transform:rotate(0deg);
+    }
+    100% {
+        transform:rotate(720deg);
+    }
+});
+.mixin( @n,@i )when( @i <= @n ){
+    li:nth-child(@{i}) {
+        transform:rotate( @i * 30deg);
+    };
+    .mixin ( @n  , (@i + 1))
+ };
+// // 网页头部
+.header {
+    .h_center {
+        z-index:12;
+        position:absolute;
+        left:0px;
+        right:0px;
+        top:400px;
+        margin:0px auto;
+        width:750px;
+        height:350px;
+        color:white;
+        text-align:center;
+        p {
+            font-family: 'Arnold';
+            font-size:@fontSize * 3;
+        }
+        p:nth-child(3) {
+            font-family:'Baskerville Old Face';
+            font-size:@fontSize * 8.5;
+        }
+        .h_btn {
+            font-size: @fontSize * 2;
+            width:280px;
+            height:66px;
+            margin:auto;
+            border-radius:10px;
+            background-color:transparent;
+            line-height:66px;
+            border:solid 1px white;
+        }
+    }
+    .bg3d {
+        width:100%;
+        .canvas {
+            position:absolute;
+            top:0px;
+            left:0px;
+        };
+         // 时钟的动画
+        .clock {
+            position:absolute;
+            left:0px;
+            right:0px;
+            width:200px;
+            height:200px;
+            margin:0px auto;
+            background-color:transparent;
+            z-index:10;
+            top:130px;
+            ul {
+                width:100%;
+                text-align:center;
+                li{
+                    width:1px;
+                    background-color:transparent;
+                    border-top:solid 10px white;
+                    border-bottom:solid 10px white;
+                    .vC
+                }
+                .mixin(6,1);
+            }
+            .clock_hours {
+                .vC;
+                z-index:10;
+                width:3px;
+                height:0px;
+                border-bottom:solid 40px white;
+                border-top:solid 1px transparent;
+                border-left:solid 1px transparent;
+                border-right:solid 1px transparent;
+                top:-40px;
+                transform-origin: bottom;
+            }
+            .clock_minutes {
+                .vC;
+                z-index:11;
+                width:2px;
+                height:0px;
+                border-bottom:solid 60px white;
+                border-top:solid 1px transparent;
+                border-left:solid 1px transparent;
+                border-right:solid 1px transparent;
+                top:-60px;
+                transform-origin: bottom;
+            }
+            .clock_s {
+                .vC;
+                z-index:12;
+                width:1px;
+                height:0px;
+                border-bottom:solid 80px white;
+                border-top:solid 1px transparent;
+                border-left:solid 1px transparent;
+                border-right:solid 1px transparent;
+                top:-80px;
+                transform-origin: bottom;
+            }
+            .center {
+                position:absolute;
+                top:0px;
+                left:0px;
+                right:0px;
+                bottom:0px;
+                margin:auto;
+                width:10px;
+                height:10px;    
+                border-radius:50%;
+                background-color:white;
+            }
+        }
+    }
+    // 导航
+    .nav {
+        position:fixed;
+        top:0px;
+        left:0px;
+        width:100%;
+        background-color:rgba(255,255,255,0);
+        color:white;
+        font-size: @fontSize * 2;
+        z-index:15;
+        .logo {
+            float:left;
+            margin:41px 0px 10px 55px;
+            .logoSvg {
+                display:inline-block;
+                fill:white;
+            }
+            .active {
+                fill:black;
+            }
+        }
+        .logoText {
+            letter-spacing:3px;
+            display: inline-block;
+            margin-top:60px;
+            margin-left:5px;
+            font-family: 'Baskerville Old Face';
+            font-size:@fontSize * 2;
+        }
+        .active {
+            color:black;
+        }
+        .navList {
+            float:right;
+            margin:30px 10% 10px 0px;
+            li {
+                float:left;
+                padding:12px 10px;
+                a {
+                    .shortHover {
+                        fill: transparent;
+                        stroke-width: 1px;
+                        stroke: rgb(243, 243, 158);
+                        transition: all 1s ease;
+                    }
+                }
+                a:hover {
+                    .shortHover {
+                        stroke-dashoffset: 0;
+                        stroke-dasharray: 720 360;
+                        stroke-width: 1px;
+                        stroke: white;
+                    }
+                }
+                .hover
+            }
+            .navListText{
+                font-family: 'Ge Body';
+                font-size: @fontSize;
+            }
+            .navListTextactive {
+                font-family: 'Ge Body';
+                font-size: @fontSize;
+                fill:black;
+                // font-size: @fontSize;
+            }
+        }
+        .smallScreenBtn {
+            position: relative;
+            display:none;
+            float:right;
+            margin:40px 20px 10px 0px;
+            .smallhr {
+                opacity:1;
+                margin-top:-5px;
+                margin-bottom:27px;
+                height:3px;
+                width:35px;
+                background-color:white;
+                transition:all 0.3s linear;
+                transform:translate3d(0,0,0);
+            }
+            .smallhr:last-child {
+                margin-bottom:0;
+            }
+            .Leftsmallhr{
+                position:absolute;
+                top:15px;
+                left:0px;
+                width:12px;
+            }
+            .Rightsmallhr {
+                position:absolute;
+                top:15px;
+                right:0px;
+                width:12px;
+            }
+            .Lactive {
+                opacity:0;
+                transform:translate3d(-1000px,0,0);
+            }
+            .Ractive {
+                opacity:0;
+                transform:translate3d(1000px,0,0);
+            }
+            .Lone {
+                transform-origin:left;
+                transform:rotate(45deg);
+            }
+            .Ltwo {
+                transform-origin:left;
+                transform:rotate(-45deg);
+            }
+        }
+        .samllActive {
+            .smallhr {
+                background-color:black;
+            }
+        }
+        .smallnavList {
+            display:none;
+            position:absolute;
+            top:120px;
+            background-color:transparent;
+            padding:0px 50px;
+            width:100%;
+            li {
+                padding:5px 0px;
+                height:30px;
+                a{
+                    color:white;
+                    display:inline-block;
+                    transition:all 0.3s ease-in-out;
+                    transform:translate3d(-150%,0,0);
+                    background-color:black;
+                }
+                .aActive {
+                    transform:translate3d(0,0,0);
+                }
+            }
+        }
+    }
+    .action {
+        background-color:rgba(255,255,255,1);
+    }
+    // 底部导航
+    .nav_goMain {
+        z-index:15;
+        position:fixed;
+        bottom:0px;
+        width:100%;
+        text-align:center;
+        i {
+            display:inline-block;
+            color:#B0B0B0;
+            padding:10px 10px 0px 10px;
+            font-size: @fontSize * 4;
+        }
+    }
+}
+// 主要内容
+.body {
+    width:100%;
+    .bodyList {
+        padding:10px 0px;
+        width:1200px;
+        margin:50px auto;
+        min-height:600px;
+        img {
+            margin:20px 40px 00px 20px;
+            transition:all 1s ease-in-out;
+        }
+        .Fleft {
+            transform: translate3d(-500px,0px,0px);
+            opacity:0;
+        }
+        .Fright {
+            transform: translate3d(500px,0px,0px);
+            opacity:0;
+        }
+        .rotate {
+            opacity:0;
+            margin:10px;
+            width:430px;
+            height:430px;
+            background: url('../../images/img2.png') no-repeat;
+            position:relative;
+            animation:rotateLeft 10s linear infinite;
+            .son {
+                position:absolute;
+                top:0;
+                bottom:0;
+                left:0;
+                right:0;
+                margin:auto;
+                width:250px;
+                height:250px;
+                background: url('../../images/img2.png') no-repeat;
+                background-position: -90px -90px;
+                background-color:white;
+                animation:rotateRight 10s linear infinite;
+                .sonSon {
+                    position:absolute;
+                    top:0;
+                    bottom:0;
+                    left:0;
+                    right:0;
+                    margin:auto;
+                    width:130px;
+                    height:130px;
+                    background: url('../../images/img2.png') no-repeat;
+                    background-position: -150px -150px;
+                    background-color:white;
+                    animation:rotateL 10s linear infinite;
+                }
+            }
+        }
+        .body_alt_right {
+            width: 100%;
+            line-height: @fontSize * 3;
+            padding:10px 0px;
+            transition:all 1s ease-in-out;
+            transform: translate3d(0px,200px,0px);
+            opacity:0;
+            h1 {
+                font-family: 'Insignia';
+                margin:0px 0px 36px 5px;
+                font-size: 36px ;
+            }
+            p{
+                line-height: 35px;
+            }
+        }
+        .body_alt_left {
+            transition:all 1s ease-in-out;
+            transform: translate3d(0px,200px,0px);
+            opacity:0;
+            width: 50%;
+            margin-left:40%;
+            line-height: @fontSize * 3;
+            padding:10px 0px;
+            h1 {
+                font-family: 'Insignia';
+                margin:0px 0px 36px 5px;
+                font-size: 36px ;
+            }
+            p{
+                line-height: 35px;
+            }
+        }
+        .active {
+            transform: translate3d(0px,0px,0px);
+            opacity:1;
+        }
+    }
+    .team {
+        width:100%;
+        margin:100px 0px;
+        h1 {
+            margin-bottom:20px;
+            font-family: 'Insignia';
+            text-align:center;
+            font-size: 42px;
+        }
+        .teamItem {
+            width:60%;
+            height:500px;
+            margin:10px auto;
+            .swiper-slide {
+                margin:10px 10px;
+            }
+        }
+        .swiper-slide {
+            img {
+                width:80%;
+                display:block;
+                margin:0px auto;
+            }
+            h2 {
+                text-align:center;
+            }
+            p {
+                text-align:center;
+                font-size:@fontSize;
+            }
+        }
+    }
+    .Consultant {
+        width:100%;
+        margin:200px 0px;
+        h1 {
+            margin-bottom:20px;
+            font-family: 'Insignia';
+            text-align:center;
+            font-size: 42px;
+        }
+        .ConsultantItem {
+            width:60%;
+            margin:10px auto;
+            .swiper-slide {
+                margin:10px 10px;
+            }
+        }
+        .swiper-slide {
+            img {
+                width:80%;
+                display:block;
+                margin:0px auto;
+            }
+            h2 {
+                text-align:center;
+                font-size:@fontSize * 1.5;    
+            }
+            p {
+                text-align:center;
+                font-size:@fontSize;
+            }
+        }
+    }
+    .banner {
+        background-color:black;
+        padding:50px 0px;
+        .swiper-container {
+            line-height:500px;
+            border-radius:10px;
+            width:1200px;
+            height:500px;
+            text-align:center;
+            background-color:white;
+        }
+        .banner_news {
+            height:50px;
+            color:white;
+            p {
+                line-height: 50px;
+                margin-left:20%;
+                height:50px;
+                color:white;
+                z-index:2;
+                font-size:26px;
+            }
+            p:last-child {
+                font-size:16px;
+            }
+        }
+    }
+    .logom {
+        width:100%;
+        margin:50px 0px;
+        background-color:white;
+        text-align:center;
+        .logom_title {
+            font-size:@fontSize *3.5;
+            text-align:center;
+            margin-bottom:50px;
+        }
+        span {
+            line-height:200px;
+            width:200px;
+            height:200px;
+            background-color:rgb(153,157,159);
+            display:inline-block;
+            margin:0px 20px;
+            img {
+                width:100px;
+            }
+        }
+        .swiper-notification {
+            display:none;
+        }
+    }
+} 
+// 不同屏幕小适配
+@media (max-width:1200px) {
+    .header {
+        .nav {
+            .navList {
+                margin:40px 20px 10px 0px;
+            }
+            .smallScreenBtn {
+                margin-top:60px;
+            }
+        }
+    }
+    .body {
+        width:100%;
+        .bodyList {
+            min-height:500px;
+            margin-top:50px;
+            width:100%;
+            img {
+                max-width:300px;
+            }
+            .body_alt_right {
+                width:100%;
+            }
+            .body_alt_left {
+                margin-left:0px;
+                width:90%;
+            }
+        }
+        .banner {
+            width:100%;
+            .swiper-container {
+                width:100%;
+                border-radius:0px;
+            }
+        }
+    }
+}
+@media (max-width:992px) {
+    .header {
+        .nav {
+            .navList {
+                display:none;
+            }
+            .smallScreenBtn {
+                display:block;
+            }
+        }
+        .bg3d {
+            .clock {
+                top:80px;
+            }
+        }
+    }
+    .body {
+        .team {
+            margin:50px 0px;
+            width:100%;
+            h1 {
+                font-size:@fontSize * 2;
+            }
+            .teamItem {
+                width:80%;
+                .swiper-slide {
+                    width:100%;
+                    height:300px;
+                    margin:0px;
+                }
+            }
+        }
+        .Consultant {
+            margin:50px 0px;
+            width:100%;
+            height:600px;
+            h1 {
+                font-size:@fontSize * 2;
+            }
+            .ConsultantItem {
+                width:80%;
+                .swiper-slide {
+                    width:100%;
+                    height:300px;
+                    margin:0px;
+                    h2 {
+                        font-size:@fontSize * 1.5;    
+                    }
+                    p {
+                        font-size:@fontSize;
+                    }
+                }
+            }
+        }
+    }
+}
+@media (max-width:768px) {
+    .header {
+        .bg3d {
+            width:100%;
+            background:url('../../images/bg.jpg');
+            background-size:300%;
+            background-position: 50%;
+            .bgImg {
+                display:none;
+            }
+        }
+        .h_center {
+            width:100%;
+            top:280px;
+            p {
+                font-size:@fontSize * 2;
+                padding-bottom:8px;
+            }
+            p:nth-child(3) {
+                font-size:@fontSize * 3;
+            }
+            .h_btn {
+                font-size: @fontSize * 1;
+                width:150px;
+                height:44px;
+                line-height:44px;
+            }
+        }
+        .nav {
+            .navList {
+                display:none;
+            }
+            .smallScreenBtn {
+                display:block;
+            }
+            .logo {
+                margin:10px 10px 0px 10px;
+            }
+            .logoText {
+                margin-top:30px;
+            }
+            .navList {
+                float:right;
+                margin-top:10px;
+            }
+            .smallScreenBtn {
+                margin-top:30px;
+            }
+            .smallnavList {
+                top:80px;
+            }
+        }
+    }
+    .body {
+        width:100%;
+        .bodyList {
+            margin-top:50px;
+            width:100%;
+            .body_alt_right {
+                width:100%;
+                h1 {
+                    font-size:@fontSize *2
+                }
+                p {
+                    margin:0px 10px;
+                }
+            }
+            .body_alt_left {
+                margin-left:0px;
+                width:100%;
+                h1 {
+                    font-size:@fontSize *2
+                }
+                p {
+                    margin:0px 10px;
+                }
+            }
+            .rotate {
+                width:280px;
+                height:280px;
+                background-size:280px 280px;
+                .son {
+                    width:160px;
+                    height:160px;
+                    background-size:280px 280px;
+                    background-position: -60px -60px;
+                    .sonSon {
+                        width:80px;
+                        height:80px;
+                        background-size:280px 280px;
+                        background-position: -98px -98px;
+                    }
+                }
+            }
+            .team {
+                margin:50px 0px;
+                width:100%;
+                h1 {
+                    font-size:@fontSize * 2;
+                }
+                .teamItem {
+                    width:80%;
+                    .swiper-slide {
+                        width:100%;
+                        height:300px;
+                        margin:0px;
+                    }
+                }
+            }
+            .Consultant {
+                margin:50px 0px;
+                width:100%;
+                height:600px;
+                h1 {
+                    font-size:@fontSize * 2;
+                }
+                .ConsultantItem {
+                    width:80%;
+                    .swiper-slide {
+                        width:100%;
+                        height:300px;
+                        margin:0px;
+                    }
+                }
+            }
+        }
+        .logom {
+            .logom_title {
+                font-size:@fontSize * 2;
+                text-align:center;
+                margin-bottom:20px;
+            }
+            span {
+                padding:5px;
+                width:50px;
+                height:60px;
+                line-height:60px;
+                img {
+                    width:50px;
+                    height:50px;
+                }
+            }
+        }
+    }
+}
+@media (max-width:420px) {
+    .header {
+        .bg3d {
+            width:100%;
+            background:url('../../images/bg.jpg');
+            background-position: 50%;
+            .bgImg {
+                display:none;
+            }
+        }
+    }
+    .body {
+        .bodyList {
+            img {
+                float:none;
+                width:500px;
+                display:block;
+                margin:10px auto;
+            }
+            .rotate {
+                float:none;
+                display:block;
+                margin:10px auto;
+            }
+        }
+        .team {
+            margin:50px 0px;
+            width:100%;
+            h1 {
+                font-size:@fontSize * 2;
+            }
+            .teamItem {
+                width:80%;
+                .swiper-slide {
+                    width:100%;
+                    height:300px;
+                    margin:0px;
+                    h2 {
+                        font-size:@fontSize * 1.5;    
+                    }
+                    p {
+                        font-size:@fontSize;
+                    }
+                }
+            }
+        }
+        .Consultant {
+            margin:50px 0px;
+            width:100%;
+            height:600px;
+            h1 {
+                font-size:@fontSize * 2;
+            }
+            .ConsultantItem {
+                width:80%;
+                .swiper-slide {
+                    width:100%;
+                    height:300px;
+                    margin:0px;
+                    h2 {
+                        font-size:@fontSize * 1.5;    
+                    }
+                    p {
+                        font-size:@fontSize;                    }
+                }
+            }
+        }
+    }
+}

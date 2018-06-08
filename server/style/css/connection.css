@@ -1,0 +1,456 @@
+html,
+header,
+body,
+ul,
+ol,
+li,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+form,
+fieldset,
+table,
+td,
+img,
+div {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+body {
+  background: #fff;
+  color: #333;
+  font-size: 20px;
+  font-family: "Arnold";
+  overflow-x: hidden;
+}
+ul,
+ol {
+  list-style-type: none;
+}
+select,
+input,
+img,
+select {
+  vertical-align: middle;
+}
+a {
+  text-decoration: none;
+}
+a:link {
+  color: white;
+}
+a:visited {
+  color: #716e6d;
+}
+a:hover,
+a:active,
+a:focus {
+  color: #716e6d;
+}
+.clear:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.hover {
+  cursor: pointer;
+}
+.Fleft {
+  float: left;
+}
+.Fright {
+  float: right;
+}
+.vC {
+  margin: auto;
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+}
+.footer {
+  padding: 0px 0px 0px 10px;
+  height: 50px;
+  width: 100%;
+  background-color: #999d9f;
+  line-height: 50px;
+  font-size: 14px;
+}
+.footer .footerL {
+  float: left;
+}
+.footer .footerR {
+  float: right;
+  height: 50px;
+  cursor: pointer;
+}
+.footer .footerR span {
+  margin: 0px 5px;
+}
+.footer .footerR span:last-child {
+  display: inline-block;
+  height: 50px;
+  width: 40px;
+  text-align: center;
+  background-color: black;
+}
+.footer .footerR span:last-child i {
+  color: white;
+  font-size: 30px;
+}
+@media (max-width: 420px) {
+  .footer {
+    height: 80px;
+    line-height: 40px;
+  }
+  .footer .footerL {
+    float: none;
+  }
+  .footer .footerR {
+    width: 100%;
+    float: none;
+    height: 40px;
+    cursor: pointer;
+  }
+  .footer .footerR span:last-child {
+    height: 40px;
+    float: right;
+  }
+}
+.header .h_center {
+  z-index: 12;
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 300px;
+  margin: 0px auto;
+  width: 750px;
+  height: 350px;
+  color: white;
+  text-align: center;
+}
+.header .h_center p {
+  font-family: 'Arnold';
+  font-size: 21px;
+}
+.header .h_center p:nth-child(1) {
+  margin-bottom: 10px;
+  font-family: 'Baskerville Old Face';
+  font-size: 70px;
+}
+.header .bg3d {
+  width: 100%;
+}
+.header .bg3d .bgImg {
+  width: 100%;
+}
+.header .nav {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0);
+  color: white;
+  font-size: 28px;
+  z-index: 15;
+}
+.header .nav .logo {
+  float: left;
+  margin: 41px 0px 10px 55px;
+}
+.header .nav .logo .logoSvg {
+  display: inline-block;
+  fill: white;
+}
+.header .nav .logo .active {
+  fill: black;
+}
+.header .nav .logoText {
+  letter-spacing: 3px;
+  display: inline-block;
+  margin-top: 60px;
+  margin-left: 5px;
+  font-family: 'Baskerville Old Face';
+  font-size: 28px;
+}
+.header .nav .active {
+  color: black;
+}
+.header .nav .navList {
+  float: right;
+  margin: 30px 10% 10px 0px;
+}
+.header .nav .navList li {
+  float: left;
+  padding: 12px 10px;
+  cursor: pointer;
+}
+.header .nav .navList li a .shortHover {
+  fill: transparent;
+  stroke-width: 1px;
+  stroke: #f3f39e;
+  transition: all 1s ease;
+}
+.header .nav .navList li a:hover .shortHover {
+  stroke-dashoffset: 0;
+  stroke-dasharray: 720 360;
+  stroke-width: 1px;
+  stroke: white;
+}
+.header .nav .navList .navListText {
+  font-family: 'Ge Body';
+  font-size: 14px;
+}
+.header .nav .navList .navListTextactive {
+  font-family: 'Ge Body';
+  font-size: 14px;
+  fill: black;
+}
+.header .nav .smallScreenBtn {
+  position: relative;
+  display: none;
+  float: right;
+  margin: 40px 20px 10px 0px;
+}
+.header .nav .smallScreenBtn .smallhr {
+  opacity: 1;
+  margin-top: -5px;
+  margin-bottom: 27px;
+  height: 3px;
+  width: 35px;
+  background-color: white;
+  transition: all 0.3s linear;
+  transform: translate3d(0, 0, 0);
+}
+.header .nav .smallScreenBtn .smallhr:last-child {
+  margin-bottom: 0;
+}
+.header .nav .smallScreenBtn .Leftsmallhr {
+  position: absolute;
+  top: 15px;
+  left: 0px;
+  width: 12px;
+}
+.header .nav .smallScreenBtn .Rightsmallhr {
+  position: absolute;
+  top: 15px;
+  right: 0px;
+  width: 12px;
+}
+.header .nav .smallScreenBtn .Lactive {
+  opacity: 0;
+  transform: translate3d(-1000px, 0, 0);
+}
+.header .nav .smallScreenBtn .Ractive {
+  opacity: 0;
+  transform: translate3d(1000px, 0, 0);
+}
+.header .nav .smallScreenBtn .Lone {
+  transform-origin: left;
+  transform: rotate(45deg);
+}
+.header .nav .smallScreenBtn .Ltwo {
+  transform-origin: left;
+  transform: rotate(-45deg);
+}
+.header .nav .samllActive .smallhr {
+  background-color: black;
+}
+.header .nav .smallnavList {
+  display: none;
+  position: absolute;
+  top: 120px;
+  background-color: transparent;
+  padding: 0px 50px;
+  width: 100%;
+}
+.header .nav .smallnavList li {
+  padding: 5px 0px;
+  height: 30px;
+}
+.header .nav .smallnavList li a {
+  color: white;
+  display: inline-block;
+  transition: all 0.3s ease-in-out;
+  transform: translate3d(-150%, 0, 0);
+  background-color: black;
+}
+.header .nav .smallnavList li .aActive {
+  transform: translate3d(0, 0, 0);
+}
+.header .action {
+  background-color: #ffffff;
+}
+.header .nav_goMain {
+  z-index: 15;
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  text-align: center;
+}
+.header .nav_goMain i {
+  display: inline-block;
+  color: #B0B0B0;
+  padding: 10px 10px 0px 10px;
+  font-size: 56px;
+}
+.banner {
+  margin: 100px 0px;
+  width: 100%;
+  text-align: center;
+}
+.banner h1 {
+  font-size: 42px;
+  margin-bottom: 5px;
+}
+.banner > p {
+  color: #999d9f;
+}
+.banner .bannerMain {
+  width: 800px;
+  margin: 50px auto;
+}
+.banner .bannerMain .bItem {
+  float: left;
+  width: 200px;
+  height: 200px;
+  margin-left: 50px;
+}
+.banner .bannerMain .bItem .bLink {
+  width: 200px;
+  height: 200px;
+  background-color: #35393b;
+}
+.banner .bannerMain .bItem .bLink img {
+  width: 100%;
+}
+.banner .bannerMain .bItem .bLink p {
+  color: black;
+}
+@media (max-width: 1200px) {
+  .header .nav .navList {
+    margin: 40px 20px 10px 0px;
+  }
+  .header .nav .smallScreenBtn {
+    margin-top: 60px;
+  }
+  .header .bg3d {
+    width: 100%;
+    background: url('../../images/connect.jpg');
+    background-size: 300%;
+    background-position: 50%;
+  }
+  .header .bg3d .bgImg {
+    display: none;
+  }
+}
+@media (max-width: 992px) {
+  .header .nav .navList {
+    display: none;
+  }
+  .header .nav .smallScreenBtn {
+    display: block;
+  }
+  .header .bg3d {
+    width: 100%;
+    background: url('../../images/connect.jpg');
+    background-size: 300%;
+    background-position: 50%;
+  }
+  .header .bg3d .bgImg {
+    display: none;
+  }
+}
+@media (max-width: 768px) {
+  .header .bg3d {
+    width: 100%;
+    background: url('../../images/connect.jpg');
+    background-size: 300%;
+    background-position: 50%;
+  }
+  .header .bg3d .bgImg {
+    display: none;
+  }
+  .header .h_center {
+    width: 80%;
+    top: 280px;
+  }
+  .header .h_center p {
+    font-size: 28px;
+    padding-bottom: 8px;
+  }
+  .header .h_center p:nth-child(1) {
+    font-size: 56px;
+  }
+  .header .nav .navList {
+    display: none;
+  }
+  .header .nav .smallScreenBtn {
+    display: block;
+  }
+  .header .nav .logo {
+    margin: 10px 10px 0px 10px;
+  }
+  .header .nav .logoText {
+    margin-top: 30px;
+  }
+  .header .nav .navList {
+    float: right;
+    margin-top: 10px;
+  }
+  .header .nav .smallScreenBtn {
+    margin-top: 30px;
+  }
+  .header .nav .smallnavList {
+    top: 80px;
+  }
+  .banner h1 {
+    font-size: 28px;
+    margin-bottom: 5px;
+  }
+  .banner .bannerMain {
+    width: 100%;
+  }
+  .banner .bannerMain .bItem {
+    float: none;
+    margin: 50px auto;
+  }
+}
+@media (max-width: 420px) {
+  .header .bg3d {
+    width: 100%;
+    background: url('../../images/connect.jpg');
+    background-position: 50%;
+  }
+  .header .bg3d .bgImg {
+    display: none;
+  }
+  .header .h_center {
+    width: 80%;
+    top: 200px;
+  }
+  .header .h_center p {
+    font-size: 14px;
+    padding-bottom: 8px;
+  }
+  .header .h_center p:nth-child(1) {
+    font-size: 28px;
+  }
+  .body .bodyList img {
+    float: none;
+    width: 500px;
+    display: block;
+    margin: 10px auto;
+  }
+  .body .bodyList .rotate {
+    float: none;
+    display: block;
+    margin: 10px auto;
+  }
+}

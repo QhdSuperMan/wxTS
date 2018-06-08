@@ -1,0 +1,55 @@
+.footer {
+    padding:0px 0px 0px 10px;
+    height:50px;
+    width:100%;
+    background-color:rgb(153,157,159);
+    line-height:50px;
+    font-size:@fontSize;
+    .footerL {
+        float:left;
+    }
+    .footerR {
+        float:right;
+        height:50px;
+        .hover;
+        span {
+            margin:0px 5px;
+        }
+        span:last-child {
+            display:inline-block;
+            height:50px;
+            width:40px;
+            text-align:center;
+            background-color:black;
+            i {
+                color:white;
+                font-size:30px;
+            }
+        }
+    }
+}
+@media (max-width:420px) { 
+    .footer {
+        height:80px;
+        line-height:40px;
+        .footerL {
+            float:none;
+        }
+        .footerR {
+            width:100%;
+            float:none;
+            height:40px;
+            .hover;
+            span {
+                
+            }
+            span:last-child {
+                height:40px;
+                float:right;
+                i {
+                    
+                }
+            }
+        }
+    }
+}

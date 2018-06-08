@@ -1,0 +1,43 @@
+html,header,body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div{margin:0;padding:0;border:0;} 
+body{background:#fff;color:#333;font-size:20px;font-family:"Arnold";overflow-x:hidden;} 
+ 
+ul,ol{list-style-type:none;} 
+select,input,img,select{vertical-align:middle;} 
+ 
+a{text-decoration:none;} 
+a:link{color:white;} 
+a:visited{color:#716e6d;} 
+a:hover,a:active,a:focus{color:#716e6d;}
+.clear{
+    &:after{
+        content:'';
+        display:block;
+        clear:both;
+    }
+}
+.hover {
+    cursor:pointer;
+}
+// 定义常量
+@fontSize : 14px;
+.Fleft {
+    float:left;
+}
+.Fright {
+    float:right;
+}
+.keyframes (@name, @frames) {
+    @-webkit-keyframes @name { @frames(); }
+    @-moz-keyframes @name { @frames(); }
+    @-ms-keyframes @name { @frames();}
+    @-o-keyframes @name { @frames(); }
+    @keyframes @name { @frames(); }
+}
+.vC {
+    margin:auto;
+    position:absolute;
+    left:0px;
+    right:0px;
+    top:0px;
+    bottom:0px;
+}
