@@ -137,7 +137,7 @@ a:focus {
 }
 .header .h_center p {
   font-family: 'Arnold';
-  font-size: 21px;
+  font-size: 14px;
 }
 .header .h_center p:nth-child(1) {
   margin-bottom: 10px;
@@ -174,7 +174,7 @@ a:focus {
 .header .nav .logoText {
   letter-spacing: 3px;
   display: inline-block;
-  margin-top: 60px;
+  margin-top: 65px;
   margin-left: 5px;
   font-family: 'Baskerville Old Face';
   font-size: 28px;
@@ -378,15 +378,15 @@ a:focus {
     display: none;
   }
   .header .h_center {
-    width: 80%;
+    width: 100%;
     top: 280px;
   }
   .header .h_center p {
     font-size: 28px;
     padding-bottom: 8px;
   }
-  .header .h_center p:nth-child(1) {
-    font-size: 56px;
+  .header .h_center p:nth-child(3) {
+    font-size: 42px;
   }
   .header .nav .navList {
     display: none;
@@ -430,17 +430,6 @@ a:focus {
   }
   .header .bg3d .bgImg {
     display: none;
-  }
-  .header .h_center {
-    width: 80%;
-    top: 200px;
-  }
-  .header .h_center p {
-    font-size: 14px;
-    padding-bottom: 8px;
-  }
-  .header .h_center p:nth-child(1) {
-    font-size: 28px;
   }
   .body .bodyList img {
     float: none;
