@@ -1,0 +1,311 @@
+<#assign request="${request.getContextPath()}"> <#assign resources="${request}/resource">
+<!DOCTYPE html>
+<html>
+
+	<head>
+	<meta content="webkit" name="renderer" />
+		<meta charset="UTF-8">
+		<title>个人中心</title>
+		<!--公用样式-->
+		<link rel="stylesheet" href="${resources}/front/css/base.css" />
+		<link rel="stylesheet" href="${resources}/front/css/style.css" />
+		<link rel="stylesheet" href="${resources}/front/css/index.css" />
+		<link rel="stylesheet" type="text/css" href="${resources}/front/css/iconfont.css">
+		<!--js-->
+		<script type="text/javascript" src="${resources}/front/js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="${resources}/js/register.js"></script>
+	</head>
+
+	<body>
+		<!--容器  start-->
+		<div class="container">
+
+			<!--nav- start-->
+			<#include "/front/head.html"/>
+			<!--nav- end-->
+			<div class="nav-blank"></div>
+			<!--geren- start-->
+			<div class="content clearfix wallet-page minh">
+				<div class="geren-left">
+					<ul class="juti clearfix">
+						<li class="clearfix" class="clearfix">
+							<a href="${request}/front/xinxi/xinxi.do?usid=${sessionusers.usid}" class="clearfix">
+								<span><#if language=="1">我的钱包<#else>My Wallet</#if></span>
+								<img src="${resources}/front/images/12.png" class="you" />
+							</a>
+						</li>
+						<li class="clearfix" class="clearfix">
+							<a href="${request}/front/xinxi/yaoqing.do">
+								<span><#if language=="1">邀请好友<#else>Invite Friend</#if></span>
+								<img src="${resources}/front/images/12.png" class="you" />
+							</a>
+						</li>
+						<li class="clearfix" >
+							<a href="${request}/front/xinxi/jiaru.do">
+								<span><#if language=="1">加入币用<#else>Join Biyong</#if></span>
+								<img src="${resources}/front/images/12.png" class="you" />
+							</a>
+						</li>
+						<li class="active3 clearfix" class="clearfix">
+							<a href="${request}/front/xinxi/authority.do">
+								<span><#if language=="1">身份验证<#else>identity check</#if></span>
+								<img src="${resources}/front/images/12.png" class="you" />
+							</a>
+						</li>
+					</ul>
+				</div>
+			<div class="coin-left coin-left2">
+			<form class="clearfix" id="form1">
+					<div class="zhu clearfix">
+						<div class="zhu_top clearfix">
+							<!-- <span onclick="chongzhi();" class="zhucezhh"><#if language=="1">${la1.pa5}<#else>${la2.pa5}</#if></span> -->
+							<span onclick="yiyou();" class="yiyou"><#if language=="1">${la1.pa6}<#else>${la2.pa6}</#if></span>
+						</div>
+						<input value="${us.ustj}" name="ustj" type="hidden">
+						<div class="zhu-wap">
+							<div id="title"><em></em></div>
+							<div class="wap-list clearfix">
+								<img src="${resources}/front/images/1.jpg" class="wap-list-tp" alt="" />
+								<#if language=="1"><input type="text" name="usname" id="number" placeholder="手机号" value=""  class="wap-list-con" />
+								<#else><input type="text" name="usname" id="number" placeholder="phoneNumber" value=""  class="wap-list-con" />
+								</#if>
+								
+							</div>
+							<div class="wap-list clearfix">
+								<img src="${resources}/front/images/2.jpg" class="wap-list-tp" alt="" />
+								<#if language=="1">
+								<input type="text" name="checkCode" id="verify" placeholder="验证码" value=""  class="wap-list-con" />
+								<#else>
+								<input type="text" name="checkCode" id="verify" placeholder="checkCode" value=""  class="wap-list-con" />
+								</#if>
+								<button type="button" class="getCode fr" id="gain">
+								<#if language=="1">获取验证码<#else>Get the verifying code</#if>
+								</button><span class="ss" style="display: none;"></span>
+							</div>
+						</div>
+						
+						<div class="denlu" id="sub"><#if language=="1">验证<#else>checkIn</#if></div>
+						<!--邀请码-->
+						
+					</div>
+				</form>	
+		</div>
+
+		<script>
+		//验证码倒计时
+		function downTime(secs) {
+			$(".ss").html(secs);
+			$(".getCode").html(secs + "s重新获取");
+			$(".getCode").attr("disabled", "disabled");
+			if(--secs > -1) {
+				setTimeout("downTime(" + secs + ")", 1000);
+			} else {
+				$(".ss").html("");
+				$(".getCode").removeAttr("disabled").html("获取验证码");
+			}
+		}
+		
+			//短信验证
+			$(function() {
+				$("#gain").click(function() {
+					var shjh = document.getElementById("number").value;
+					if(shjh==""){
+						alert("请填写正确的手机号");
+						return false;
+					}else if(!(/^0?(13[0-9]|15[012356789]|17[013678]|18[0-9]|14[57])[0-9]{8}$/).test(shjh) )
+						{
+						 alert("您的手机不正确，如有疑问请联系客服"); 
+							 /*  document.mobileform.mobile.focus();  */
+							  return false;
+						}
+					else{
+						$.ajax({
+							type: "GET",
+							url: '${request}/users/registeryz.do',
+							data: {
+								usname: shjh,
+							},
+							success: function(data) {
+								if(data.code=="1") {
+									time = data.time;
+									checkCode = data.yazheng;
+									alert("短信发送成功，请查收");
+									$("#code").val(data.yanzheng);
+									(function() {
+										var secs = parseInt($(".ss").html());
+										if(isNaN(secs)) {
+											downTime(60);
+										} else {
+											return false;
+										}
+									})()
+								} else {
+									alert("获取验证码失败，如有疑问请联系客服");
+								}
+							},
+							error: function(info) {
+								alert('请求失败，请明天再试');
+							}
+						})
+					}
+				})
+			})
+		</script>
+
+		<!--表单效验-->
+		<script>
+		
+		var time =0;
+		var checkCode =0;
+		
+			$(function() {
+				
+				$("#sub").click(function() {
+				var title1 = document.getElementById("title");
+				var dianhua=$("#number").val();
+				var fdStart1 = dianhua.indexOf("170");
+				var fdStart2 = dianhua.indexOf("171");
+					if($("#number").val()== "") {
+						$("#title em").html("手机号不能为空！");
+						title1.style.display = "block";
+						return false;
+					} else if($("#number").val().length < 11 || $("#number").val().length > 12) {
+						$("#title em").html("手机号有11位！");
+						title1.style.display = "block";
+						return false;
+					}else if(fdStart1 == 0||fdStart2 == 0){
+						$("#title em").html("170、171号码无法使用");
+						title1.style.display = "block";
+						return false;
+					} else {
+						$("#title em").html("");
+						title1.style.display = "none";
+					}
+
+					if($("#verify").val()== "") {
+						$("#title em").html("验证码不能为空!");
+						title1.style.display = "block";
+						return false;
+					}
+					/* else if($("#code").val() != verify.value) {
+						$("#title em").html("验证码不存在!");
+						title1.style.display = "block";
+						return false;
+					} */
+					else if($("#verify").val().length < 6 || $("#verify").val().length > 7) {
+						$("#title em").html("密码长度为6位");
+						title1.style.display = "block";
+						return false;
+					} else {
+						$("#title em").html("");
+						title1.style.display = "none";
+					}
+
+					$.ajax({
+						type: "POST",
+						url: '${request}/users/check.do',
+						data:{
+							/* $('#form1').serialize() */// 你的formid
+							usname:$("#number").val(),
+							checkCode:$("#verify").val(),
+							random: time,
+							validate:register(checkCode,time)
+						},// 你的formid
+						success: function(data) {
+							alert(data.message);
+							window.location.href = "${request}/front/xinxi/authority.do";
+						}
+
+					})
+
+				})
+			})
+		</script>	
+				
+		<script type="text/javascript">
+		 $(document).ready(function(){
+			 $("#guanyuwomen").removeClass("active");
+			 $("#gerenzhongxin").addClass("active");
+			 $("#zhongxinshouye").removeClass("active");
+          });
+		$("#english").click(function(){
+			window.location.href="${request}/front/xinxi/authority.do?language=2";
+		});
+		$("#chinese").click(function(){
+			window.location.href="${request}/front/xinxi/authority.do?language=1";
+		});
+		
+			$(function() {
+				var name = localStorage.getItem("name")
+			    var pic  = localStorage.getItem("pic")
+			    if(name){
+			    	$("#language").text(name)	
+			    }
+				if(pic){
+					$("#img").attr('style', pic)
+			    }
+				//顶部语言选择
+				$(".change").on("click", function() {
+				
+					$(".tj .icon-jiantou_down").css("display", "block");
+					$(".tj .icon-jiantou_up").css("display", "none");
+					var language_pic = $(this).children().attr("style")
+					var language_name = $(this).children().next().text()
+					$("#language").text(language_name)
+					$("#img").attr('style', language_pic)
+					$(this).parent().hide()
+					
+					localStorage.setItem("name",language_name)
+					localStorage.setItem("pic",language_pic)
+					
+					$(".tj").attr("onclick", "x_1(this)")
+				})
+
+				//退出
+				$(".nav-right .jj_tuichu").click(function() {
+					$(".nav-right .jj .icon-jiantou_down").css("display", "block");
+					$(".nav-right .jj .icon-jiantou_up").css("display", "none");
+					$(".nav-right  .rt-con2").css("display", "none");
+					$(".jj").attr("onclick", "x(this)")
+				})
+			})
+			// 退出start
+			function x(obj) {
+
+				$(obj).attr("onclick", "y(this)")
+				$(".jj .icon-jiantou_down").css("display", "none");
+				$(".jj .icon-jiantou_up").css("display", "block");
+				$(".quit").toggle()
+			}
+
+			function y(obj) {
+
+				$(obj).attr("onclick", "x(this)")
+				$(".jj .icon-jiantou_down").css("display", "block");
+				$(".jj .icon-jiantou_up").css("display", "none");
+				$(".quit").toggle()
+			}
+
+			// 语言start
+			function x_1(obj) {
+				$(".language").toggle()
+				$(obj).attr("onclick", "y_1(this)")
+				$(".tj .icon-jiantou_down").css("display", "none");
+				$(".tj .icon-jiantou_up").css("display", "block");
+			}
+
+			function y_1(obj) {
+
+				$(".language").toggle()
+				$(obj).attr("onclick", "x_1(this)")
+
+				$(".tj .icon-jiantou_down").css("display", "block");
+				$(".tj .icon-jiantou_up").css("display", "none");
+			}
+		</script>		
+				
+				
+				
+	</body>
+
+</html>

@@ -1,0 +1,156 @@
+<#assign request="${request.getContextPath()}"> <#assign resources="${request}/resource">
+<!DOCTYPE html>
+<html>
+
+	<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta charset="UTF-8">
+		<title>登录</title>
+		<!--公用样式-->
+		<link rel="stylesheet" href="${resources}/front/css/base.css" />
+		<link rel="stylesheet" href="${resources}/front/css/style.css" />
+		<!--js-->
+		<script type="text/javascript" src="${resources}/front/js/jquery-1.9.1.min.js"></script>
+		<link rel="stylesheet" href="${resources}/front/css/validateCss/validationEngine.jquery.css">
+	</head>
+
+	<body class="body2">
+		<!--容器  start-->
+		<div class="container">
+
+			<div class="content">
+
+				<div class="zhuce_top">
+					<img src="${resources}/front/images/logo.png" class="logo" alt="" />
+					<div class="zhuce_tit">教链JLL</div>
+				</div>
+
+				<form class="clearfix" id="form1">
+					<div class="zhu clearfix">
+
+						<div class="zhu_top2 clearfix"><#if language=="1">${la1.pa1}<#else>${la2.pa1}</#if></div>
+
+						<div class="zhu-wap">
+							
+							<div id="title"><em></em></div>
+							
+							<div class="wap-list clearfix">
+								<img src="${resources}/front/images/1.jpg" class="wap-list-tp" alt="" />
+								<input type="text" name="usname" id="number" value="" placeholder="手机号" class="wap-list-con custom[phone]" />
+							</div>
+							<div class="wap-list clearfix">
+								<img src="${resources}/front/images/2.jpg" class="wap-list-tp" alt="" />
+								<input type="password" name="uspass" id="password" value="" placeholder="密码" class="wap-list-con" />
+							</div>
+							<div class="wap-list clearfix">
+								<img src="${resources}/front/images/3.jpg" class="wap-list-tp" alt="" />
+								<input type="text" name="imgcode" id="gain" value="" placeholder="输入验证码" class="wap-list-con" />
+								<img src="${request}/img"  id="companyimg" onclick="changecode('companyimg')" class="yanzheng" alt="" />
+							</div>
+
+						</div>
+
+						<div class="denglu_top clearfix">
+							<span id="zhuce" class="denglu_zhucezhh"><#if language=="1">${la1.pa2}<#else>${la2.pa2}</#if></span>
+							<span id="wangji" class="wangji"><#if language=="1">${la1.pa3}<#else>${la2.pa3}</#if></span>
+						</div>
+
+						<div class="denlu" id="sub"><#if language=="1">${la1.pa4}<#else>${la2.pa4}</#if></div>
+						<!--邀请码-->
+						<input type="hidden" name="code" id="code" value="" />
+
+					</div>
+				</form>
+			</div>
+
+		</div>
+		<!--容器  end-->
+
+		<!--表单效验-->
+		<script src="${resources}/front/js/validateJs/jquery.validationEngine.js"></script>
+		<script src="${resources}/front/js/validateJs/jquery.validationEngine-zh_CN.js"></script>
+		<script>
+			$(function() {
+				//正则判断加提交（用于审核）
+				$('#form1').validationEngine('attach', {
+					promptPosition: 'centerRight',
+					scroll: false
+				});
+			})
+			
+			
+    //图片变换
+    function changecode(imgid){
+		document.getElementById(imgid).src="${request}/img?"+ new Date().getTime(); //这里的图片是更换后的图片
+		$("#imgid").prop("src", url);
+	
+    }
+	
+			$("#wangji").click(function (){
+				window.location.href="${request}/users/chongzhi.do";
+			})	
+			$("#zhuce").click(function (){
+				window.location.href="${request}/users/zhuceq.do";
+			})	
+	
+			
+			$(function() {
+				var title1 = document.getElementById("title");
+				$("#sub").click(function ()  {
+					 if ($('#form1').validationEngine('validate')) {
+					if($("#number").val() == "") {
+						$("#title em").html("手机号不能为空！");
+						title1.style.display = "block";
+						changecode('companyimg');
+						return false;
+					} else if($("#number").val().length < 11 || $("#number").val().length > 12) {
+						/* $("#title em").html(); */
+						alert("手机号有11位！");
+						changecode('companyimg');
+						return false;
+
+					} else {
+						$("#title em").html("");
+						title1.style.display = "none";
+					}
+
+					if($("#password").val() == "") {
+						$("#title em").html("密码不能为空！");
+						title1.style.display = "block";
+						changecode('companyimg');
+						return false;
+					}
+					/* else if($("#code").val() != password.value) {
+						$("#title em").html("验证码不存在!");
+						title1.style.display = "block";
+						return false;
+					} */
+					else {
+						$("#title em").html("");
+						title1.style.display = "none";
+					}
+					$.ajax({
+						cache: true,
+						type: "POST",
+						url:'${request}/users/login.do',
+			            data:$('#form1').serialize(),// 你的formid
+			            async: false,
+						success: function(data) {
+							alert(data.msg);
+							if(data.code == "1") {
+								window.location.href="${request}/frist/shouye.do";
+							} else {
+								changecode('companyimg');
+							}
+						}
+					})
+					 }else{
+							changecode('companyimg');
+						}
+				})
+			})
+		</script>
+
+	</body>
+
+</html>

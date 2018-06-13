@@ -1,0 +1,162 @@
+<#assign request="${request.getContextPath()}"> <#assign resources="${request}/resource">
+<!DOCTYPE html>
+<html>
+
+	<head>
+	<meta content="webkit" name="renderer" />
+		<meta charset="UTF-8">
+		<title>关于我们</title>
+		<!--公用样式-->
+		<link rel="stylesheet" href="${resources}/front/css/base.css" />
+		<link rel="stylesheet" href="${resources}/front/css/style.css" />
+		<link rel="stylesheet" href="${resources}/front/css/index.css" />
+		<link rel="stylesheet" type="text/css" href="${resources}/front/css/iconfont.css">
+		<!--js-->
+		<script type="text/javascript" src="${resources}/front/js/jquery-1.9.1.min.js"></script>
+	</head>
+
+	<body>
+		<!--容器  start-->
+		<div class="container">
+
+			<!--nav- start-->
+			<#include "/front/head.html"/>
+			<!--nav- end-->
+			<div class="nav-blank"></div>
+
+			<!--banner- start-->
+
+			<!--banner- end-->
+
+			<!--about- start-->
+			<div class="content">
+				<div class="about">
+					<div class="about-nr"><#if language=="1">${la1.pa5}<#else>${la2.pa5}</#if></div>
+					<div class="about-list">
+						<h3 class="about-tit"><#if language=="1">${ab.abtitle}<#else>${ab.abtitley}</#if></h3>
+						<div class="about-text"><#if language=="1">${ab.abcount}<#else>${ab.abcounty}</#if></div>
+					</div>
+					<div class="about-list">
+						<h3 class="about-tit"><#if language=="1">${la1.pa1}<#else>${la2.pa1}</#if></h3>
+						<div class="about-text"><#if language=="1">${la1.pa2}<#else>${la2.pa2}</#if></div>
+					</div>
+					
+					<a id="yaoqinghaoyou">
+						<div class="about-yaoqing"><#if language=="1">${la1.pa3}<#else>${la2.pa3}</#if></div>
+					</a>
+					
+					<a href="${co.courl}" target="view_window">
+						<div class="about-yaoqing2"><#if language=="1">${la1.pa4}<#else>${la2.pa4}</#if></div>
+					</a>
+						
+				</div>
+
+			</div>
+			<!--about- end-->
+			
+			<!--footer- start-->
+			<#include "/front/foot.html"/>
+			<!--footer- end-->
+
+			
+			
+			
+		</div>
+		<!--容器  end-->
+
+		<script type="text/javascript">
+		
+		$("#english").click(function(){
+			window.location.href="${request}/aboutus/getData.do?language=2";
+		});
+		$("#chinese").click(function(){
+			window.location.href="${request}/aboutus/getData.do?language=1";
+		});
+		$("#yaoqinghaoyou").click(function(){
+			var id="${sessionusers.usid}";
+			if(id==""){
+				alert("请先登录");
+			}else{
+				window.location.href="${request}/front/xinxi/yaoqing.do";
+			}
+		});
+		
+			 $(document).ready(function(){
+				 $("#guanyuwomen").addClass("active");
+				 $("#gerenzhongxin").removeClass("active");
+				 $("#zhongxinshouye").removeClass("active");
+	          });
+		
+			$(function() {
+				var name = localStorage.getItem("name")
+			    var pic  = localStorage.getItem("pic")
+			    if(name){
+			    	$("#language").text(name)	
+			    }
+				if(pic){
+					$("#img").attr('style', pic)
+			    }
+				//顶部语言选择
+				$(".change").on("click", function() {
+				
+					$(".tj .icon-jiantou_down").css("display", "block");
+					$(".tj .icon-jiantou_up").css("display", "none");
+					var language_pic = $(this).children().attr("style")
+					var language_name = $(this).children().next().text()
+					$("#language").text(language_name)
+					$("#img").attr('style', language_pic)
+					$(this).parent().hide()
+					
+					localStorage.setItem("name",language_name)
+					localStorage.setItem("pic",language_pic)
+					
+					$(".tj").attr("onclick", "x_1(this)")
+				})
+				
+				//退出
+				$(".nav-right .jj_tuichu").click(function() {
+					$(".nav-right .jj .icon-jiantou_down").css("display", "block");
+					$(".nav-right .jj .icon-jiantou_up").css("display", "none");
+					$(".nav-right  .rt-con2").css("display", "none");
+					$(".jj").attr("onclick","x(this)")
+				})
+			})
+			// 退出start
+			 function x(obj){
+			 	 
+			 	 $(obj).attr("onclick","y(this)")
+			     $(".jj .icon-jiantou_down").css("display", "none");
+			     $(".jj .icon-jiantou_up").css("display", "block");
+			     $(".quit").toggle()
+			 }
+			 
+			 function y(obj){
+			 	 
+			 	 $(obj).attr("onclick","x(this)")
+			     $(".jj .icon-jiantou_down").css("display", "block");
+			     $(".jj .icon-jiantou_up").css("display", "none");
+			     $(".quit").toggle()
+			 }
+			 
+			 // 语言start
+			 function x_1(obj){
+			 	
+			 	 $(".language").toggle()
+			 	 $(obj).attr("onclick","y_1(this)")
+			     $(".tj .icon-jiantou_down").css("display", "none");
+			     $(".tj .icon-jiantou_up").css("display", "block");
+			 }
+			 
+			 function y_1(obj){
+			 	
+			 	 $(".language").toggle()
+			 	 $(obj).attr("onclick","x_1(this)")
+			 	 
+			     $(".tj .icon-jiantou_down").css("display", "block");
+			     $(".tj .icon-jiantou_up").css("display", "none");
+			 }
+		</script>
+
+	</body>
+
+</html>

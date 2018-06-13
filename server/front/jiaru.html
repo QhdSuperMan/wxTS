@@ -1,0 +1,165 @@
+<#assign request="${request.getContextPath()}"> <#assign resources="${request}/resource">
+<!DOCTYPE html>
+<html>
+
+	<head>
+	<meta content="webkit" name="renderer" />
+		<meta charset="UTF-8">
+		<title>个人中心</title>
+		<!--公用样式-->
+		<link rel="stylesheet" href="${resources}/front/css/base.css" />
+		<link rel="stylesheet" href="${resources}/front/css/style.css" />
+		<link rel="stylesheet" href="${resources}/front/css/index.css" />
+		<link rel="stylesheet" type="text/css" href="${resources}/front/css/iconfont.css">
+		<!--js-->
+		<script type="text/javascript" src="${resources}/front/js/jquery-1.9.1.min.js"></script>
+	</head>
+
+	<body>
+		<!--容器  start-->
+		<div class="container">
+
+			<!--nav- start-->
+			<#include "/front/head.html"/>
+			<!--nav- end-->
+			<div class="nav-blank"></div>
+			<!--geren- start-->
+			<div class="content clearfix wallet-page minh">
+				<div class="geren-left">
+					<ul class="juti clearfix">
+						<li class="clearfix" class="clearfix">
+							<a href="${request}/front/xinxi/xinxi.do?usid=${sessionusers.usid}" class="clearfix">
+								<span><#if language=="1">我的钱包<#else>My Wallet</#if></span>
+								<img src="${resources}/front/images/12.png" class="you" />
+							</a>
+						</li>
+						<li class="clearfix" class="clearfix">
+							<a href="${request}/front/xinxi/yaoqing.do">
+								<span><#if language=="1">邀请好友<#else>Invite Friend</#if></span>
+								<img src="${resources}/front/images/12.png" class="you" />
+							</a>
+						</li>
+						<li class="active3 clearfix" >
+							<a href="${request}/front/xinxi/jiaru.do">
+								<span><#if language=="1">加入币用<#else>Join Biyong</#if></span>
+								<img src="${resources}/front/images/12.png" class="you" />
+							</a>
+						</li>
+						<li class="clearfix" class="clearfix">
+							<a href="${request}/front/xinxi/authority.do">
+								<span><#if language=="1">身份验证<#else>identity check</#if></span>
+								<img src="${resources}/front/images/12.png" class="you" />
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="geren-con clearfix mt70 ">
+					<div class="coin-left coin-left2">
+						<div class="coin-left-tit"><#if language=="1">邀请好友拿100,000 JLL<#else>Bind Biyong：</#if></div>
+						<div class="coin-left-text2"><#if language=="1">绑定币用、进群立即获取100 JLL ，<#else>Bind Biyong and Join JLL Biyong group to gain 100 JLL</#if></div>
+						<p class="wangluo3"><#if language=="1">私聊官方币用机器人后点击“START”并进群,领取 100 JLL<#else>Click "START" after Private chat with our Biyong bot and join the group, get 100 JLL </#if></p>
+						<a href="${co.courl}"  target="view_window">
+							<div class="fuzhi2"><#if language=="1">立即和机器人私聊<#else>Connect with bot on Biyong</#if></div>
+						</a>
+						<p class="wangluo2"><#if language=="1">一旦参与作弊行为，JLL.TOP保留暂停或终止被警告用户的资格权利。JLL.TOP保留采取法律行动的权利。此活动官方解释权归JLL.TOP所有。<#else>Once involved in the cheating operation, JLL.TOP reserve the right to suspend or terminate the qualification of warned user. JLL.TOP retain the right to persue legal actions. The official interpretation of this event belongs to JLL.TOP.</#if></p>
+					</div>
+
+				</div>
+
+			</div>
+			<!--geren- end-->
+			<!--底部撑起-->
+			<div class="nav-blank2"></div>
+			<!--footer- start-->
+			
+				<#include "/front/foot.html"/>
+			<!--fot- end-->
+
+		</div>
+		<!--容器  end-->
+
+		<script type="text/javascript">
+		 $(document).ready(function(){
+			 $("#guanyuwomen").removeClass("active");
+			 $("#gerenzhongxin").addClass("active");
+			 $("#zhongxinshouye").removeClass("active");
+          });
+		$("#english").click(function(){
+			window.location.href="${request}/front/xinxi/jiaru.do?language=2";
+		});
+		$("#chinese").click(function(){
+			window.location.href="${request}/front/xinxi/jiaru.do?language=1";
+		});
+		
+			$(function() {
+				var name = localStorage.getItem("name")
+			    var pic  = localStorage.getItem("pic")
+			    if(name){
+			    	$("#language").text(name)	
+			    }
+				if(pic){
+					$("#img").attr('style', pic)
+			    }
+				//顶部语言选择
+				$(".change").on("click", function() {
+				
+					$(".tj .icon-jiantou_down").css("display", "block");
+					$(".tj .icon-jiantou_up").css("display", "none");
+					var language_pic = $(this).children().attr("style")
+					var language_name = $(this).children().next().text()
+					$("#language").text(language_name)
+					$("#img").attr('style', language_pic)
+					$(this).parent().hide()
+					
+					localStorage.setItem("name",language_name)
+					localStorage.setItem("pic",language_pic)
+					
+					$(".tj").attr("onclick", "x_1(this)")
+				})
+
+				//退出
+				$(".nav-right .jj_tuichu").click(function() {
+					$(".nav-right .jj .icon-jiantou_down").css("display", "block");
+					$(".nav-right .jj .icon-jiantou_up").css("display", "none");
+					$(".nav-right  .rt-con2").css("display", "none");
+					$(".jj").attr("onclick", "x(this)")
+				})
+			})
+			// 退出start
+			function x(obj) {
+
+				$(obj).attr("onclick", "y(this)")
+				$(".jj .icon-jiantou_down").css("display", "none");
+				$(".jj .icon-jiantou_up").css("display", "block");
+				$(".quit").toggle()
+			}
+
+			function y(obj) {
+
+				$(obj).attr("onclick", "x(this)")
+				$(".jj .icon-jiantou_down").css("display", "block");
+				$(".jj .icon-jiantou_up").css("display", "none");
+				$(".quit").toggle()
+			}
+
+			// 语言start
+			function x_1(obj) {
+				$(".language").toggle()
+				$(obj).attr("onclick", "y_1(this)")
+				$(".tj .icon-jiantou_down").css("display", "none");
+				$(".tj .icon-jiantou_up").css("display", "block");
+			}
+
+			function y_1(obj) {
+
+				$(".language").toggle()
+				$(obj).attr("onclick", "x_1(this)")
+
+				$(".tj .icon-jiantou_down").css("display", "block");
+				$(".tj .icon-jiantou_up").css("display", "none");
+			}
+		</script>
+
+	</body>
+
+</html>

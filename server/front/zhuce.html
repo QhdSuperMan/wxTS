@@ -1,0 +1,268 @@
+<#assign request="${request.getContextPath()}"> <#assign resources="${request}/resource">
+<!DOCTYPE html>
+<html>
+
+	<head>
+	<meta content="webkit" name="renderer" />
+		<meta charset="UTF-8">
+		<title>注册</title>
+		<!--公用样式-->
+		<link rel="stylesheet" href="${resources}/front/css/base.css" />
+		<link rel="stylesheet" href="${resources}/front/css/style.css" />
+		<link href="${resources}/css/slide-unlock.css" rel="stylesheet">
+		<!--js-->
+		<script type="text/javascript" src="${resources}/front/js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="${resources}/js/register.js"></script>
+		<script src="${resources}/js/slideunlock.js"></script>
+	</head>
+
+	<body class="body2">
+		<!--容器  start-->
+		<div class="container">
+
+			<div class="content">
+
+				<div class="zhuce_top">
+					<img src="${resources}/front/images/logo.png" class="logo" alt="" />
+					<div class="zhuce_tit">教链JLL</div>
+				</div>
+				
+				<form class="clearfix" id="form1">
+					<div class="zhu clearfix">
+						<div class="zhu_top clearfix">
+							<!-- <span onclick="chongzhi();" class="zhucezhh"><#if language=="1">${la1.pa5}<#else>${la2.pa5}</#if></span> -->
+							<span onclick="yiyou();" class="yiyou"><#if language=="1">${la1.pa6}<#else>${la2.pa6}</#if></span>
+						</div>
+						<input value="${us.ustj}" name="ustj" type="hidden">
+						<div class="zhu-wap">
+							<div id="title"><em></em></div>
+							<div class="wap-list clearfix">
+								<img src="${resources}/front/images/1.jpg" class="wap-list-tp" alt="" />
+								<input type="text" name="usname" id="number" placeholder="手机号" value=""  class="wap-list-con" />
+							</div>
+							<div class="wap-list clearfix">
+								<img src="${resources}/front/images/2.jpg" class="wap-list-tp" alt="" />
+								<input type="text" name="checkCode" id="verify" placeholder="验证码" value=""  class="wap-list-con" />
+								<button type="button" class="getCode fr" id="gain"><#if language=="1">获取验证码<#else>Get the verifying code
+								</#if></button><span class="ss" style="display: none;"></span>
+							</div>
+							<div class="wap-list clearfix">
+								<img src="${resources}/front/images/3.jpg" class="wap-list-tp" alt="" />
+								<input type="password" name="uspass" placeholder="密码" id="password" value=""  class="wap-list-con" />
+							</div>
+							<div class="wap-list clearfix">
+								<img src="${resources}/front/images/3.jpg" class="wap-list-tp" alt="" />
+								<input type="password" name="" placeholder="确认密码" id="password2" value="" class="wap-list-con" />
+							</div>
+							
+							<div id="slider">
+								<div id="slider_bg"></div>
+								<span id="label">>></span>
+						        <span id="labelTip">拖动滑块验证</span>
+							</div>
+						</div>
+						
+						<input type="hidden" name="code" id="code" value="" />
+						<div class="denlu" id="sub"><#if language=="1">注册<#else>register</#if></div>
+						<!--邀请码-->
+						
+					</div>
+				</form>
+			</div>
+		<input value="0" type="hidden" id="yanzheng">
+		</div>
+		<!--容器  end-->
+		
+						    <script>
+							    $(function () {
+							        var slider = new SliderUnlock('#slider',{
+											successLabelTip : '验证通过'
+										},function(){
+											//alert("验证成功");
+											document.getElementById('yanzheng').value=1;
+							        	});
+							        slider.init();
+							    })
+							</script>
+		<script>
+		function yiyou(){
+			window.location.href="${request}/users/loginq.do";
+		}
+		function chongzhi(){
+			window.location.href="${request}/users/chongzhi.do";
+		}
+		
+		
+		
+			$(".getCode").click();
+		</script>
+		
+		<script>
+		//验证码倒计时
+		function downTime(secs) {
+			$(".ss").html(secs);
+			$(".getCode").html(secs + "s重新获取");
+			$(".getCode").attr("disabled", "disabled");
+			if(--secs > -1) {
+				setTimeout("downTime(" + secs + ")", 1000);
+			} else {
+				$(".ss").html("");
+				$(".getCode").removeAttr("disabled").html("获取验证码");
+			}
+		}
+		
+			//短信验证
+			$(function() {
+				$("#gain").click(function() {
+					var shjh = document.getElementById("number").value;
+					if(shjh==""){
+						alert("请填写正确的手机号");
+						return false;
+					}else if(!(/^0?(13[0-9]|15[012356789]|17[013678]|18[0-9]|14[57])[0-9]{8}$/).test(shjh) )
+						{
+						 alert("您的手机号无法注册，如有疑问请联系客服"); 
+							 /*  document.mobileform.mobile.focus();  */
+							  return false;
+						}
+					else{
+						$.ajax({
+							type: "GET",
+							url: '${request}/users/registeryz.do',
+							data: {
+								usname: shjh
+							},
+							success: function(data) {
+								if(data.code=="1") {
+									$("#code").val(data.yazheng);
+									(function() {
+										var secs = parseInt($(".ss").html());
+										if(isNaN(secs)) {
+											downTime(60);
+										} else {
+											return false;
+										}
+									})()
+									time = data.time;
+									checkCode = data.yazheng;
+									alert("短信发送成功，请查收");
+								} else {
+									alert("获取验证码失败，如有疑问请联系客服");
+								}
+							},
+							error: function(info) {
+								alert('请求次数过多，请明天再试');
+							}
+						})
+					}
+				})
+			})
+		</script>
+
+		<!--表单效验-->
+		<script>
+		var time =0;
+		var checkCode =0;
+			$(function() {
+				
+				$("#sub").click(function() {
+				var title1 = document.getElementById("title");
+				var dianhua=$("#number").val();
+				var fdStart1 = dianhua.indexOf("170");
+				var fdStart2 = dianhua.indexOf("171");
+					if($("#number").val()== "") {
+						$("#title em").html("手机号不能为空！");
+						title1.style.display = "block";
+						return false;
+					} else if($("#number").val().length < 11 || $("#number").val().length > 12) {
+						$("#title em").html("手机号有11位！");
+						title1.style.display = "block";
+						return false;
+					}else if(fdStart1 == 0||fdStart2 == 0){
+						$("#title em").html("170、171不能注册");
+						title1.style.display = "block";
+						return false;
+					} else {
+						$("#title em").html("");
+						title1.style.display = "none";
+					}
+
+					if($("#verify").val()== "") {
+						$("#title em").html("验证码不能为空!");
+						title1.style.display = "block";
+						return false;
+					}
+					/* else if($("#code").val() != verify.value) {
+						$("#title em").html("验证码不存在!");
+						title1.style.display = "block";
+						return false;
+					} */
+					else if($("#verify").val().length < 6 || $("#verify").val().length > 7) {
+						$("#title em").html("密码长度为6位");
+						title1.style.display = "block";
+						return false;
+					} else {
+						$("#title em").html("");
+						title1.style.display = "none";
+					}
+
+					if($("#password").val()== "") {
+						$("#title em").html("密码不能为空！");
+						title1.style.display = "block";
+
+						return false;
+					} else if($("#password").val().length < 5 || $("#password").val().length > 10) {
+						$("#title em").html("密码长度为5-10位");
+						title1.style.display = "block";
+
+						return false;
+					} else {
+						$("#title em").html("");
+						title1.style.display = "none";
+					}
+
+					if($("#password2").val() !== $("#password").val()) {
+						$("#title em").html("两次密码不一样！");
+						title1.style.display = "block";
+						return false;
+					} else {
+						$("#title emr").html("");
+						title1.style.display = "none";
+					}
+					if($("#yanzheng").val()== "0") {
+						$("#title em").html("请拖动滑块验证!");
+						title1.style.display = "block";
+						return false;
+					}
+					$.ajax({
+						type: "POST",
+						url: '${request}/users/forget.do',
+						data:{
+							/* $('#form1').serialize() */// 你的formid
+							usname:$("#number").val(),
+							checkCode:$("#verify").val(),
+							uspass: $("#password").val(),
+							random: time,
+							validate:register(checkCode,time)
+						},
+						success: function(data) {
+							alert(data.msg);
+							if(data.code=="1") {
+								window.location.href = "${request}/frist/shouye.do";
+								/* title1.style.display = "block";
+								$("#title em").html("注册成功！");
+								setInterval(function() {
+									window.location.href = "register.html";
+								}, 1500)
+ */
+							}
+						}
+
+					})
+
+				})
+			})
+		</script>
+
+	</body>
+
+</html>

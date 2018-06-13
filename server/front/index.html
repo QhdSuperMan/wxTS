@@ -1,0 +1,415 @@
+<#assign request="${request.getContextPath()}"> <#assign resources="${request}/resource">
+<!DOCTYPE html>
+<html>
+
+	<head>
+	<meta content="webkit" name="renderer" />
+		<meta charset="UTF-8">
+		<title>首页</title>
+		<!--公用样式-->
+		<link rel="stylesheet" href="${resources}/front/css/base.css" />
+		<link rel="stylesheet" href="${resources}/front/css/style.css" />
+		<link rel="stylesheet" href="${resources}/front/css/index.css" />
+		<link rel="stylesheet" type="text/css" href="${resources}/front/css/iconfont.css">
+		<!--js-->
+		<script type="text/javascript" src="${resources}/front/js/jquery-1.9.1.min.js"></script>
+	</head>
+
+	<body>
+		<!--容器  start-->
+		<div class="container">
+
+			<!--nav- start-->
+			<#include "/front/head.html"/>
+			<!--nav- end-->
+			<div class="nav-blank"></div>
+
+			<!--banner- start-->
+			<div class="banner">
+			<#if sessionusers!=null>
+			<a href="${request}/front/xinxi/yaoqing.do?">
+			<#else>
+			<a href="${request}/users/zhuceq.do">
+			</#if>
+			</a>
+			<#if language=="1">
+				<img src="${resources}/front/images/7.png" class="banner-tp" alt="" />
+			<#else>
+			<img src="${resources}/front/images/banner1.png" class="banner-tp" alt="" />
+			</#if>
+			</div>
+			<!--banner- end-->
+
+			<!--coin- start-->
+			<div class="content">
+				<div class="coin">
+					<div class="coin-left">
+						<div class="coin-left-tit"><#if language=="1">${la1.pa1}<#else>${la2.pa1}</#if></div>
+						<div class="coin-left-text"><#if language=="1">${la1.pa2}<#else>${la2.pa2}</#if></div>
+						<div class="coin-left-con" >
+							<p id="biao1"><#if language=="1">全球最大加密货币空投组织JLL正在空投Token！注册即送500JLL<#else>JLL, the world's largest encryption airdrop organization, is Airdropping Token. Register 500JLL
+							</#if><#if language=="1">  参加活动更有机会抢300000JLL <#else>Participate in activities more opportunities to grab 300000JLL
+							</#if><br /><#if language=="1"> 点击下面链接快速抢<#else>Click the link below to quickly grab
+							</#if>: <a href="${fenxainglianjie}<#if sessionusers!=null >?ustj=${sessionusers.usid}</#if>"> ${fenxainglianjie}<#if sessionusers!=null >?ustj=${sessionusers.usid}</#if></a>
+							</p>
+						</div>
+						<div onclick="Copy();" class="fuzhi"><#if language=="1">复制<#else>Copy</#if></div>
+						<div class="coin-left-fenxiang clearfix">
+							<div class="yijian"><#if language=="1">${la1.pa3}<#else>${la2.pa3}</#if></div>
+							<div class="jiathis_style_32x32">
+							<div class="yijian-list"><a class="jiathis_button_cqq"></a></div>
+							</div>
+							<a onclick="weixinfenxiang();">
+								<div class="yijian-list"><img src="${resources}/front/images/9.png" class="yijian-list-tp" alt="" /></div>
+							</a>
+							<div  onClick="window.open('${jiaolianbi}')" class="yijian-list"><img src="${resources}/front/images/10.png" class="yijian-list-tp" alt="" /></div>
+							<script type="text/javascript" >
+							var jiathis_config={
+								url:"${basePath}fenxiang.do?ustj=${sessionusers.usid}",
+								summary:"",
+								title:"教链JLL",
+								shortUrl:false,
+								hideMore:false
+							}
+							</script>
+							<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+							<!-- JiaThis Button END -->
+						</div>
+						
+					</div>
+					<div class="coin-right">
+						<div class="qiandao clearfix">
+							<div class="qiandao-tp clearfix">
+								<div class="qiandao-tit"><#if language=="1">${la1.pa4}<#else>${la2.pa4}</#if></div>
+								<div class="qiandao-text"><#if language=="1">${la1.pa9}<#else>${la2.pa9}</#if></div>
+							</div>
+							<ul class="qiandao-riqi clearfix">
+								<#if sign=="0">
+								<li>1</li>
+								<li>2</li>
+								<li>3</li>
+								<li>4</li>
+								<li>5</li>
+								<li>6</li>
+								<li>7</li>
+								</#if>
+								<#if sign=="1">
+								<li class="active2">1</li>
+								<li>2</li>
+								<li>3</li>
+								<li>4</li>
+								<li>5</li>
+								<li>6</li>
+								<li>7</li>
+								</#if>
+								<#if sign=="2">
+								<li class="active2">1</li>
+								<li class="active2">2</li>
+								<li>3</li>
+								<li>4</li>
+								<li>5</li>
+								<li>6</li>
+								<li>7</li>
+								</#if>
+								<#if sign=="3">
+								<li class="active2">1</li>
+								<li class="active2">2</li>
+								<li class="active2">3</li>
+								<li>4</li>
+								<li>5</li>
+								<li>6</li>
+								<li>7</li>
+								</#if>
+								<#if sign=="4">
+								<li class="active2">1</li>
+								<li class="active2">2</li>
+								<li class="active2">3</li>
+								<li class="active2">4</li>
+								<li>5</li>
+								<li>6</li>
+								<li>7</li>
+								</#if>
+								<#if sign=="5">
+								<li class="active2">1</li>
+								<li class="active2">2</li>
+								<li class="active2">3</li>
+								<li class="active2">4</li>
+								<li class="active2">5</li>
+								<li>6</li>
+								<li>7</li>
+								</#if>
+								<#if sign=="6">
+								<li class="active2">1</li>
+								<li class="active2">2</li>
+								<li class="active2">3</li>
+								<li class="active2">4</li>
+								<li class="active2">5</li>
+								<li class="active2">6</li>
+								<li>7</li>
+								</#if>
+								<#if sign=="7">
+								<li class="active2">1</li>
+								<li class="active2">2</li>
+								<li class="active2">3</li>
+								<li class="active2">4</li>
+								<li class="active2">5</li>
+								<li class="active2">6</li>
+								<li class="active2">7</li>
+								</#if>
+							</ul>
+							<ul class="qiandao-riqi clearfix">
+								<li>50</li>
+								<li>100</li>
+								<li>150</li>
+								<li>250</li>
+								<li>400</li>
+								<li>650</li>
+								<li>650</li>
+							</ul>
+						</div>
+						<div class="jianjie">
+						<#if language=="1">${la1.pa5}<#else>${la2.pa5}</#if>
+						</div>
+						<!--  <div class="tablet-show">
+							<a href="${co.courl}" target="view_window">
+								<div class="box-list_footer">
+									<p class="footer-title">
+										<#if language=="1">${la1.pa6}<#else>${la2.pa6}</#if>
+										<span class="gift-btn"><#if language=="1">${la1.pa7}<#else>${la2.pa7}</#if></span>
+									</p>
+								</div>
+							</a>
+						</div>-->
+					</div>
+				</div>
+			</div>
+			<!--coin- end-->
+
+			<!--footer- start-->
+				<#include "/front/foot.html"/>
+			<!--fot- end-->
+
+			<!--弹出框-->
+				<div class="tishi tishi2">
+					<div class="tan tan2 clearfix">
+						<div class="tan-top">
+							<div class="tan-tit"><#if language=="1">每日签到<#else>Sign in every day
+							</#if></div>
+							<img src="${resources}/front/images/15.png" class="guanbi" alt="" />
+						</div>
+						<div class="tan-con">
+							<div class="tan-con-nr"><#if language=="1">每日签到可获得100个JLL，每日签到天天可领<#else>Daily check-in can get 40 JLL, daily check-in daily collar.
+</#if></div>
+							<div class="qian">
+								<img src="${resources}/front/images/logo3.png" class="qian-logo" alt="" />
+								<div class="qian-nr"><#if language=="1">恭喜获得<#else>Congratulations</#if><span>100JLL</span></div>
+								<div class="qian-nr"><#if language=="1">稍后会放入你的钱包，请注意查收<#else>You will put it in your wallet later. Please pay attention to it.
+</#if></div>
+							</div>
+						</div>
+						<!--确认-->
+						<div id="qianqudenglu" class="queren"><#if language=="1">登录<#else>Login</#if></div>
+					</div>
+				</div>
+			<!--遮罩-->
+			<!--<div class="zhezhao zhezhao2"></div>-->
+			<!--弹出框-->
+
+		</div>
+		<!--容器  end-->
+		<script type="text/javascript">
+		function weixinfenxiang(){
+			var usid="${sessionusers.usid}";
+			if(usid!=""&&usid!=null){
+			window.location.href="${request}/fenxiang.do?ustj="+usid;
+			}else{
+				window.location.href="${request}/fenxiang.do";
+			}
+		}
+		
+		$(function() {
+				var name = localStorage.getItem("name")
+			    var pic  = localStorage.getItem("pic")
+			    if(name){
+			    	$("#language").text(name)	
+			    }
+				if(pic){
+					$("#img").attr('style', pic)
+			    }
+				//顶部语言选择
+				$(".change").on("click", function() {
+				
+					$(".tj .icon-jiantou_down").css("display", "block");
+					$(".tj .icon-jiantou_up").css("display", "none");
+					var language_pic = $(this).children().attr("style")
+					var language_name = $(this).children().next().text()
+					$("#language").text(language_name)
+					$("#img").attr('style', language_pic)
+					$(this).parent().hide()
+					
+					localStorage.setItem("name",language_name)
+					localStorage.setItem("pic",language_pic)
+					
+					$(".tj").attr("onclick", "x_1(this)")
+				})
+	
+				//退出
+				$(".nav-right .jj_tuichu").click(function() {
+					$(".nav-right .jj .icon-jiantou_down").css("display", "block");
+					$(".nav-right .jj .icon-jiantou_up").css("display", "none");
+					$(".nav-right  .rt-con2").css("display", "none");
+					$(".jj").attr("onclick", "x(this)")
+				})
+	
+				//开始
+				$(".qiandao-text").click(function() {
+					var user="${sessionusers.usid}";
+					if(user==""){
+						$(".tan2").css("display", "block");
+						$(".tishi2").css("display", "block");
+					}else{
+						$.ajax({
+					        type: "POST",
+					        url: '${request}/sign/update.do',
+					        data: {
+					        	usid:user
+					        },
+					        async: false,
+					        error: function(request) {
+					            alert("Connection error");
+					        },
+					        success: function(data) {
+					            if (data.code == "1") {
+					            	$(".tan2").css("display", "none");
+									$(".tishi2").css("display", "none");
+									$(".tan-con-nr").css("display", "none");
+					            	$(".tan2").css("display", "block");
+									$(".tishi2").css("display", "block");
+									$(".qian").css("display", "block");
+									$(".tan-tit").html("邀请好友领100,000JLL");
+									$(".queren").html("邀请好友领100,000JLL");
+					            }else{
+					            	alert("今日已完成签到");
+					            }
+					        }
+					    });
+					}
+				
+	
+				})
+	
+				//关闭
+				$(".guanbi").click(function() {
+					$(".tan2").css("display", "none");
+					$(".tishi2").css("display", "none");
+	
+				})
+	
+				//修改添加地址
+				$(".qiandao-tit").click(function() {
+					$(".tan2").css("display", "block");
+					$(".tishi2").css("display", "block");
+					$(".qian").css("display", "block");
+					$(".tan-tit").html("邀请好友领100,000JLL");
+				})
+	
+				//修改添加地址 关闭
+				$(".guanbi").click(function() {
+					$(".tan2").css("display", "none");
+					$(".tishi2").css("display", "none");
+					$(".tan-con-nr").css("display", "none");
+					$(".qian").css("display", "none");
+					$(".queren").html("邀请好友领100,000JLL");
+				})
+	
+			})
+		
+			$("#english").click(function(){
+				window.location.href="${request}/frist/shouye.do?language=2";
+			});
+			$("#chinese").click(function(){
+				window.location.href="${request}/frist/shouye.do?language=1";
+			});
+		
+
+			// 退出start
+			function x(obj) {
+
+				$(obj).attr("onclick", "y(this)")
+				$(".jj .icon-jiantou_down").css("display", "none");
+				$(".jj .icon-jiantou_up").css("display", "block");
+				$(".quit").toggle()
+			}
+
+			function y(obj) {
+
+				$(obj).attr("onclick", "x(this)")
+				$(".jj .icon-jiantou_down").css("display", "block");
+				$(".jj .icon-jiantou_up").css("display", "none");
+				$(".quit").toggle()
+			}
+
+			// 语言start
+			function x_1(obj) {
+				$(".language").toggle()
+				$(obj).attr("onclick", "y_1(this)")
+				$(".tj .icon-jiantou_down").css("display", "none");
+				$(".tj .icon-jiantou_up").css("display", "block");
+			}
+
+			function y_1(obj) {
+				$(".language").toggle()
+				$(obj).attr("onclick", "x_1(this)")
+
+				$(".tj .icon-jiantou_down").css("display", "block");
+				$(".tj .icon-jiantou_up").css("display", "none");
+			}
+			
+			$("#qianqudenglu").click(function() {
+				 var biaoqian=$("#qianqudenglu").text();
+				 if(biaoqian=="登录"){
+				window.location.href="${request}/users/loginq.do";
+				 }else{
+					 window.location.href="${request}/front/xinxi/yaoqing.do";
+				 }
+			})
+			
+			
+		</script>
+		<script type="text/javascript" src="${resources}/js/jquery.min.js"></script>
+		  <script type="text/javascript">
+     //复制内容
+        function Copy()
+        {
+            var copyData = $('#biao1').text();            
+            if (window.clipboardData) {
+                window.clipboardData.clearData();
+                window.clipboardData.setData("Text", copyData);
+                alert('已经成功复制到剪帖板上!');
+            }
+            else
+            {
+                selectText("biao1");
+                alert('非IE浏览器请使用CTRL + C键进行复制!');
+            }
+        }
+
+        //选中文字
+        function selectText(element) {
+            var text = document.getElementById(element);//获取要选中的内容
+            if (document.body.createTextRange) {//IE浏览器
+                var range = document.body.createTextRange();//创建选区
+                range.moveToElementText(text);//移动TextRange对象使其起始点之间包含指定对象内的文本
+                range.select();//选中选区
+            } else if (window.getSelection) {//非IE浏览器，getSelection方法可以产生Selection对象，所对应的是用户所选择的 ranges （区域），俗称拖蓝。
+                var selection = window.getSelection();               
+                selection.removeAllRanges();//将所有的区域都从选区中移除
+                var range = document.createRange();//返回新创建的 Range 对象，两个边界点都被设置为文档的开头
+                range.selectNodeContents(text);//把范围边界设置为一个节点的子节点
+                selection.addRange(range);//将一个区域（Range）对象加入选区
+            } 
+        }
+    </script>
+	</body>
+
+</html>

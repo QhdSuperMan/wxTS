@@ -1,0 +1,27 @@
+<#assign request="${request.getContextPath()}"> <#assign resources="${request}/resource">
+<!DOCTYPE html>
+<html>
+
+	<head>
+	<meta content="webkit" name="renderer" />
+		<meta charset="UTF-8">
+		<title>个人中心</title>
+		<!--公用样式-->
+		<link rel="stylesheet" href="${resources}/front/css/base.css" />
+		<link rel="stylesheet" href="${resources}/front/css/style.css" />
+		<link rel="stylesheet" href="${resources}/front/css/index.css" />
+		<link rel="stylesheet" type="text/css" href="${resources}/front/css/iconfont.css">
+		<!--js-->
+		<script type="text/javascript" src="${resources}/front/js/jquery-1.9.1.min.js"></script>
+	</head>
+
+	<body>
+		<!-- <#if sessionusers!=null>
+			<a href="${request}/front/xinxi/yaoqing.do?">
+			<#else>
+			<a href="${request}/users/zhuceq.do">
+			</#if> -->
+			alert(checkGrade);
+	</body>
+
+</html>

@@ -1,0 +1,148 @@
+<#assign request="${request.getContextPath()}"> <#assign resources="${request}/resource">
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>jietu.html</title>
+	
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=UTF-8">
+    	<link rel="stylesheet" href="${resources}/front/css/base.css" />
+		<link rel="stylesheet" href="${resources}/front/css/style.css" />
+		<link rel="stylesheet" href="${resources}/front/css/index.css" />
+		<link rel="stylesheet" type="text/css" href="${resources}/front/css/iconfont.css">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+<!-- <style>
+body{background: #ccc}
+#dw{position: absolute;top: 10px;left:10%;height: 620px;width:1030px;background: #fff; border:1px solid black;padding: 10px}
+.close{
+ position:relative;
+ left: 10px;
+ width:0.2em;
+ height:1em;
+ background: #333;
+ -webkit-transform: rotate(45deg);
+ -moz-transform: rotate(45deg);
+ -o-transform: rotate(45deg);
+ -ms-transform: rotate(45deg);
+ transform: rotate(45deg);
+ display: inline-block;
+}
+.close:after{
+ content: "";
+ position: absolute;
+ top: 0;
+ left: 0;
+ width:0.2em;
+ height:1em;
+ background: #333;
+ -webkit-transform: rotate(270deg);
+ -moz-transform: rotate(270deg);
+ -o-transform: rotate(270deg);
+ -ms-transform: rotate(270deg);
+ transform: rotate(270deg);
+}
+</style> -->
+  </head>
+  
+  <body>
+
+        <script type="text/javascript" src="${resources}/js/jquery.1.11.3.min.js"></script>    
+        <script type="text/javascript" src="${resources}/js/html2canvas.js"></script>    
+
+        <div class="container">
+
+			<!--weixin- start-->
+			<div class="content">
+				<div class="weixin" id="main">
+					<img src="${resources}/front/images/weixin-bg.jpg" class="weixin-bg" />
+					<div class="weixin-wep">
+						<img src="${resources}/front/images/erwm-tp.png" class="erwm-tp" />
+					</div>
+				</div>
+			</div>
+			<!--weixin  end-->
+			
+		</div>
+        <button onclick="doScreenShot()">点击</button>
+
+<script type="text/javascript">
+	$("#dw").hide();
+	//关闭图片
+	function closeok(){
+	 $("#dw").hide();
+	}
+	//点击截图
+	function doScreenShot(){
+	
+	 html2canvas($("#main"), {
+	  onrendered: function(canvas) {
+	   canvas.id = "mycanvas";
+	   var mainwh=$("#main").width();
+	   var mainhg=$("#main").height();
+	   var img = convertCanvasToImage(canvas);
+	   alert(mainhg)
+	   img.onload = function() {
+	    img.onload = null;
+	    canvas = convertImageToCanvas(img, 0, 0, mainwh, mainhg); //设置图片大小和位置
+	    img.src = convertCanvasToImage(canvas).src;
+	    $(img).css({
+	     background:"#fff" 
+	    });
+	    //调用下载方法
+	     if(browserIsIe()){ //假如是ie浏览器   
+	      DownLoadReportIMG(img.src);
+	     }else{
+	      download(img.src)
+	     }
+	    }
+	   }   
+	 });
+	}
+	//绘制显示图片
+	function convertCanvasToImage(canvas) {
+	 var image = new Image();
+	 image.src = canvas.toDataURL("image/png"); //获得图片地址
+	 return image;
+	}
+	//生成canvas元素，相当于做了一个装相片的框架
+	function convertImageToCanvas(image, startX, startY, width, height) {
+	 var canvas = document.createElement("canvas");
+	 canvas.width = width;
+	 canvas.height = height;
+	 canvas.getContext("2d").drawImage(image, startX, startY, width, height, 20, 20, width, height); //在这调整图片中内容的显示（大小,放大缩小,位置等）
+	 return canvas;
+	}
+	 function DownLoadReportIMG(imgPathURL) {
+	 //如果隐藏IFRAME不存在，则添加
+	 if (!document.getElementById("IframeReportImg"))
+	  $('<iframe style="display:none;" id="IframeReportImg" name="IframeReportImg" onload="DoSaveAsIMG();" width="0" height="0" src="about:blank"></iframe>').appendTo("body");
+	 if (document.all.IframeReportImg.src != imgPathURL) {
+	  //加载图片
+	  document.all.IframeReportImg.src = imgPathURL;
+	 }
+	 else {
+	  //图片直接另存为
+	  DoSaveAsIMG();
+	 }
+	}
+	function DoSaveAsIMG() {
+	 if (document.all.IframeReportImg.src != "about:blank")
+	  window.frames["IframeReportImg"].document.execCommand("SaveAs");
+	}
+	// 另存为图片
+	function download(src) {
+	 var $a = $("<a></a>").attr("href", src).attr("download", "img.png");
+	 $a[0].click();
+	}
+	//判断是否为ie浏览器
+	function browserIsIe() {
+	 if (!!window.ActiveXObject || "ActiveXObject" in window)
+	  return true;
+	 else
+	  return false;
+	}
+</script>
+</body>
+</html>

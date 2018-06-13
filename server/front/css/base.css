@@ -1,0 +1,147 @@
+*{
+    margin: 0;
+    padding: 0
+}
+img {
+    border: 0 none;
+    vertical-align: top;
+}
+ul,li {
+    list-style-type: none
+}
+body,input,select,button,textarea {
+    font-family: "Microsoft YaHei", "微软雅黑", Tahoma, Geneva, sans-serif;
+    font-size: 100%;
+    color: #333333;
+}
+input::-webkit-input-placeholder { /* WebKit browsers */
+    color: #646464; padding-left: 2%; font-size: 14px;
+}
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #646464;  padding-left: 2%; font-size: 14px;
+}
+input::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #646464;  padding-left: 2%; font-size: 14px;
+}
+input:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #646464;  padding-left: 2%; font-size: 14px;
+}
+button {
+    cursor: pointer;
+}
+i,em,cite {
+    font-style: normal;
+}
+a,a:link {
+    text-decoration: none;
+}
+a{
+	color: #333333;
+}
+a:active,
+a:hover {
+    text-decoration: none;
+}
+a:focus {
+    outline: none
+}
+.fixed:after {
+    content: ".";
+    display: block;
+    clear: both;
+    height: 0;
+    visibility: hidden;
+}
+input,optgroup,select,textarea,img{
+
+-webkit-tap-highlight-color: rgba(0, 0, 0, 0);    
+
+-webkit-user-modify: read-write-plaintext-only;
+
+outline:none;
+border: 0;
+
+}
+ul{
+	list-style: none;
+}
+.container{
+	width: 100%; 
+	height: auto;
+}
+.content{
+	max-width: 1200px; 
+	margin: 0 auto;
+}
+.fl{
+	float: left;
+}
+.fr{
+	float: right;
+}
+.clear{
+	clear: both;
+}
+.ff{
+	color: #FFFFFF;
+}
+.ffbj{
+	background-color: #FFFFFF;
+}
+.mt50{
+	margin-top: 50px;
+}
+.mt30{
+	margin-top: 30px;
+}
+.mt5{
+	margin-top: 5px;
+}
+.mt10{
+	margin-top: 10px;
+}
+.ml5{
+	margin-left: 5%;
+}
+.mr15{
+	margin-right: 15px;
+}
+.blue{
+	color: #0062FF;
+}
+.orange{
+	color: #FF7F00;
+}
+.ft14{
+	font-size: 14px;
+}
+.ft18{
+	font-size: 18px;
+}
+.ft24{
+	font-size: 24px;
+}
+.red{
+	color: #C30D18;
+}
+.redbj{
+	background-color: #C30D18;
+}
+.gray{
+	color: #646464;
+}
+.graybj{
+	background-color: #F5F5F5;
+}
+.clearfix:after{
+    content: '.';
+    height:0;
+    visibility: hidden;
+    clear:both;
+    display: block;
+}
+.container {
+    width: 100%;
+    height: auto;
+}
+

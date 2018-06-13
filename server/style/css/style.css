@@ -77,7 +77,6 @@ a:focus {
 .footer {
   padding: 0px 0px 0px 10px;
   height: 50px;
-  width: 100%;
   background-color: #999d9f;
   line-height: 50px;
   font-size: 14px;
@@ -300,7 +299,7 @@ html::-webkit-scrollbar {
   text-align: center;
 }
 .header .bg3d .clock ul li {
-  width: 1px;
+  width: 2px;
   background-color: transparent;
   border-top: solid 10px white;
   border-bottom: solid 10px white;
@@ -546,6 +545,7 @@ html::-webkit-scrollbar {
   width: 100%;
 }
 .body .bodyList {
+  overflow: hidden;
   padding: 10px 0px;
   width: 1200px;
   margin: 50px auto;
@@ -554,6 +554,9 @@ html::-webkit-scrollbar {
 .body .bodyList img {
   margin: 20px 40px 00px 20px;
   transition: all 1s ease-in-out;
+}
+.body .bodyList .stImg {
+  width: 500px;
 }
 .body .bodyList .Fleft {
   transform: translate3d(-500px, 0px, 0px);
@@ -565,7 +568,7 @@ html::-webkit-scrollbar {
 }
 .body .bodyList .rotate {
   opacity: 0;
-  margin: 10px;
+  margin: 10px 40px 10px 10px;
   width: 430px;
   height: 430px;
   background: url('../../images/img2.png') no-repeat;
@@ -601,7 +604,7 @@ html::-webkit-scrollbar {
   animation: rotateL 10s linear infinite;
 }
 .body .bodyList .body_alt_right {
-  width: 100%;
+  width: 90%;
   line-height: 42px;
   padding: 10px 0px;
   transition: all 1s ease-in-out;
@@ -633,13 +636,20 @@ html::-webkit-scrollbar {
 .body .bodyList .body_alt_left p {
   line-height: 35px;
 }
+.body .bodyList .lastbodytext {
+  padding-top: 50px;
+}
 .body .bodyList .active {
   transform: translate3d(0px, 0px, 0px);
   opacity: 1;
 }
+.body .bodyList .hzbodyList {
+  padding-top: 100px;
+}
 .body .team {
   width: 100%;
   margin: 100px 0px;
+  overflow: hidden;
 }
 .body .team h1 {
   margin-bottom: 20px;
@@ -656,17 +666,21 @@ html::-webkit-scrollbar {
   margin: 10px 10px;
 }
 .body .team .swiper-slide img {
-  width: 100%;
+  width: 80%;
+  display: block;
+  margin: 0px auto;
 }
 .body .team .swiper-slide h2 {
   text-align: center;
 }
 .body .team .swiper-slide p {
   text-align: center;
+  font-size: 14px;
 }
 .body .Consultant {
   width: 100%;
   margin: 200px 0px;
+  overflow: hidden;
 }
 .body .Consultant h1 {
   margin-bottom: 20px;
@@ -682,13 +696,17 @@ html::-webkit-scrollbar {
   margin: 10px 10px;
 }
 .body .Consultant .swiper-slide img {
-  width: 100%;
+  width: 80%;
+  display: block;
+  margin: 0px auto;
 }
 .body .Consultant .swiper-slide h2 {
   text-align: center;
+  font-size: 21px;
 }
 .body .Consultant .swiper-slide p {
   text-align: center;
+  font-size: 14px;
 }
 .body .banner {
   background-color: black;
@@ -718,8 +736,10 @@ html::-webkit-scrollbar {
   font-size: 16px;
 }
 .body .logom {
+  overflow: hidden;
   width: 100%;
-  margin: 50px 0px;
+  margin: 0px;
+  margin-top: 50px;
   background-color: white;
   text-align: center;
 }
@@ -730,11 +750,10 @@ html::-webkit-scrollbar {
 }
 .body .logom span {
   line-height: 200px;
-  width: 200px;
   height: 200px;
   background-color: #999d9f;
   display: inline-block;
-  margin: 0px 20px;
+  margin: 0px 0px;
 }
 .body .logom span img {
   width: 100px;
@@ -754,14 +773,14 @@ html::-webkit-scrollbar {
   }
   .body .bodyList {
     min-height: 500px;
-    margin-top: 50px;
+    margin: 50px 30px 0px 30px;
     width: 100%;
   }
   .body .bodyList img {
-    max-width: 300px;
+    max-width: 400px;
   }
   .body .bodyList .body_alt_right {
-    width: 100%;
+    width: 90%;
   }
   .body .bodyList .body_alt_left {
     margin-left: 0px;
@@ -816,6 +835,12 @@ html::-webkit-scrollbar {
     height: 300px;
     margin: 0px;
   }
+  .body .Consultant .ConsultantItem .swiper-slide h2 {
+    font-size: 21px;
+  }
+  .body .Consultant .ConsultantItem .swiper-slide p {
+    font-size: 14px;
+  }
 }
 @media (max-width: 768px) {
   .header .bg3d {
@@ -829,11 +854,12 @@ html::-webkit-scrollbar {
   }
   .header .h_center {
     width: 100%;
-    top: 280px;
+    top: 400px;
   }
   .header .h_center p {
     font-size: 28px;
-    padding-bottom: 8px;
+    padding-bottom: 16px;
+    letter-spacing: 10px;
   }
   .header .h_center p:nth-child(3) {
     font-size: 42px;
@@ -870,11 +896,10 @@ html::-webkit-scrollbar {
     width: 100%;
   }
   .body .bodyList {
-    margin-top: 50px;
     width: 100%;
   }
   .body .bodyList .body_alt_right {
-    width: 100%;
+    width: 90%;
   }
   .body .bodyList .body_alt_right h1 {
     font-size: 28px;
@@ -884,7 +909,7 @@ html::-webkit-scrollbar {
   }
   .body .bodyList .body_alt_left {
     margin-left: 0px;
-    width: 100%;
+    width: 90%;
   }
   .body .bodyList .body_alt_left h1 {
     font-size: 28px;
@@ -940,16 +965,21 @@ html::-webkit-scrollbar {
     height: 300px;
     margin: 0px;
   }
+  .body .logom {
+    margin-bottom: 10px;
+  }
   .body .logom .logom_title {
     font-size: 28px;
     text-align: center;
     margin-bottom: 20px;
   }
   .body .logom span {
-    padding: 5px;
+    height: 60px;
+    line-height: 60px;
   }
   .body .logom span img {
     width: 50px;
+    height: 50px;
   }
 }
 @media (max-width: 420px) {
@@ -961,16 +991,47 @@ html::-webkit-scrollbar {
   .header .bg3d .bgImg {
     display: none;
   }
+  .header .h_center {
+    width: 100%;
+    top: 300px;
+  }
+  .header .h_center p {
+    font-size: 21px;
+    padding-bottom: 16px;
+    letter-spacing: 0px;
+  }
+  .header .h_center p:nth-child(3) {
+    font-size: 28px;
+  }
+  .header .h_center .h_btn {
+    font-size: 14px;
+    width: 150px;
+    height: 44px;
+    line-height: 44px;
+    margin-top: 10px;
+  }
+  .body .bodyList {
+    margin: 50px 0px;
+  }
   .body .bodyList img {
     float: none;
-    width: 500px;
+    width: 300px;
     display: block;
     margin: 10px auto;
+  }
+  .body .bodyList .stImg {
+    width: 310px;
   }
   .body .bodyList .rotate {
     float: none;
     display: block;
     margin: 10px auto;
+  }
+  .body .bodyList .body_alt_right {
+    width: 100%;
+  }
+  .body .bodyList .body_alt_left {
+    width: 100%;
   }
   .body .team {
     margin: 50px 0px;

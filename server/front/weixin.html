@@ -1,0 +1,52 @@
+<#assign request="${request.getContextPath()}"> <#assign resources="${request}/resource">
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>分享微信二维码</title>
+		<!--公用样式-->
+		<link rel="stylesheet" href="${resources}/front/css/base.css" />
+		<link rel="stylesheet" href="${resources}/front/css/style.css" />
+		<link rel="stylesheet" href="${resources}/front/css/index.css" />
+		<link rel="stylesheet" type="text/css" href="${resources}/front/css/iconfont.css">
+		<!--js-->
+		<script type="text/javascript" src="${resources}/front/js/jquery-1.9.1.min.js"></script>
+	</head>
+
+	<body>
+		<!--容器  start-->
+		<div class="container">
+
+			<!--weixin- start-->
+			<div class="content">
+				<div class="weixin">
+					<img src="${resources}/front/images/weixin-bg.jpg" class="weixin-bg" />
+					<div id="qrcode" class="weixin-wep">
+					 <img  id="qrcode-img" class="erwm-tp">
+					</div>
+				</div>
+			</div>
+			<!--weixin  end-->
+			 <div id="qrcode" class="img-hide"></div>
+		</div>
+		<!--容器  end-->
+		<script src="${resources}/js/jquery.min.js"></script>
+		<script src="${resources}/qrcodejs/jquery.qrcode.min.js"></script>
+		<script src="${resources}/js/bootstrap.min.js"></script>
+		<script src="${resources}/js/jscommon.js"></script>
+<script type="text/javascript">
+ window.onload=function(){
+			 var rvm = "${basePath}/users/zhuceq.do?ustj=${us.ustj}";
+			$('#qrcode').qrcode({width:200,height:200,text:rvm});
+			var canvas = $('#qrcode').children("canvas").get(0);
+			var base64=canvas.toDataURL();
+			$(canvas).css("display","none");
+			$("#qrcode-img").attr("src",base64);
+	}
+
+</script>
+	
+	</body>
+
+</html>

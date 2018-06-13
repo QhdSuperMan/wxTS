@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+
+  </head>
+  
+  <body>
+    <div class="nav clearfix">
+				<div class="content">
+					<div class="nav-bar clearfix">
+						<img src="${resources}/front/images/logo.png" class="logo2" alt="" />
+						<div class="nav-bar-tit">教链JLL</div>
+					</div>
+					<div class="nav-con clearfix">
+						<ul>
+							<li id="zhongxinshouye" class="active">
+								<a href="${request}/frist/shouye.do"><#if language=="1">首页<#else>Home</#if></a>
+							</li>
+							<li id="gerenzhongxin" style="cursor: pointer;">
+								<a><#if language=="1">个人中心<#else>Person</#if></a>
+							</li>
+							<li id="guanyuwomen">
+								<a href="${request}/aboutus/getData.do"><#if language=="1">关于我们<#else>About</#if></a>
+							</li>
+						</ul>
+					</div>
+					<div class="nav-right clearfix" >
+						<div class="rt-con clearfix " style="cursor: pointer;">
+							<div class="yuyan clearfix">
+							<#if language=="1"></#if>
+								<div class="yuyan-tp" id="img"></div>
+								<div class="yuyan-tit" id="language">简体中文</div>
+								<span class="yuyan-icon tj" onclick="x_1(this)">
+										<i class="iconfont icon-jiantou_down"></i>
+										<i class="iconfont icon-jiantou_up"></i>
+							    </span>
+							</div>
+							<div  class="yyxz clearfix tj2 language">
+								<div id="english" class="yyxz-list clearfix change">
+									<div id="yingwentu" class="yuyan-tp2" style="background: url(${resources}/front/images/5.png) no-repeat;"></div>
+									<div id="yingwenming" class="yuyan-tit2">English</div>
+								</div>
+								<div id="chinese" class="yyxz-list clearfix change">
+									<div class="yuyan-tp3" style="background: url(${resources}/front/images/4.png) no-repeat;"></div>
+									<div class="yuyan-tit2">简体中文</div>
+								</div>
+							</div>
+						</div>
+							<#if sessionusers!=null>
+						<div class="rt-con rt-con2 clearfix" style="cursor: pointer;">
+							<div class="yuyan clearfix">
+								<div class="yuyan-tit ">${sessionusers.usname}</div>
+								<span class="yuyan-icon jj" onclick="x(this)">
+										<i class="iconfont icon-jiantou_down"></i>
+										<i class="iconfont icon-jiantou_up"></i>
+								</span>
+							</div>
+							<div class="yyxz clearfix jj2 quit">
+								<div onclick="tuichu();" class="yyxz-list jj_tuichu clearfix" style="text-align: center;">
+									退出
+								</div>
+							</div>
+						</div>
+						<#else>
+						<div class="nav-right-con" style="cursor: pointer;">
+							<a href="${request}/users/loginq.do" class="nav-denglu"><#if language=="1">登录<#else>Login</#if></a>
+							<a href="${request}/users/zhuceq.do" class="nav-zhuce"><#if language=="1">注册<#else>Sign</#if></a>
+						</div>
+						</#if>
+					</div>
+				</div>
+			</div>
+<script type="text/javascript">
+$("#gerenzhongxin").click(function(){
+	  var id="${sessionusers.usid}";
+	 if(id==""){
+		 alert("请先登录");
+	 }else{
+		 window.location.href="${request}/front/xinxi/xinxi.do?usid="+id;
+	 }
+});
+
+function tuichu(){
+	window.location.href="${request}/users/exit.do";
+}
+
+
+</script>
+
+</body>
+</html>

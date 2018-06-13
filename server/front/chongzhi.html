@@ -1,0 +1,233 @@
+<#assign request="${request.getContextPath()}"> <#assign resources="${request}/resource">
+<!DOCTYPE html>
+<html>
+
+	<head>
+	<meta content="webkit" name="renderer" />
+		<meta charset="UTF-8">
+		<title>重置</title>
+		<!--公用样式-->
+		<link rel="stylesheet" href="${resources}/front/css/base.css" />
+		<link rel="stylesheet" href="${resources}/front/css/style.css" />
+		<!--js-->
+		<script type="text/javascript" src="${resources}/front/js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="${resources}/js/register.js"></script>
+	</head>
+
+	<body class="body2">
+		<!--容器  start-->
+		<div class="container">
+
+			<div class="content">
+
+				<div class="zhuce_top">
+					<img src="${resources}/front/images/logo.png" class="logo" alt="" />
+					<div class="zhuce_tit">教链JLL</div>
+				</div>
+
+				<form class="clearfix" id="form1">
+					<div class="zhu clearfix">
+						<div class="zhu_top clearfix">
+							<a href="${request}/users/chongzhi.do">
+								<span class="zhucezhh"><#if language=="1">重置密码<#else>reset password
+								</#if></span>
+							</a>
+							<a href="${request}/users/loginq.do">
+								<span  class="yiyou"><#if language=="1">已有账号登录<#else>Existing account login
+								</#if></span>
+							</a>
+						</div>
+
+						<div class="zhu-wap">
+							<div id="title"><em></em></div>
+							<div class="wap-list clearfix">
+								<img src="${resources}/front/images/1.jpg" class="wap-list-tp" alt="" />
+								<input type="text" name="usname" id="number"  placeholder="手机号" class="wap-list-con" />
+							</div>
+							<div class="clearfix">
+								<div class="wap-list2 clearfix">
+									<img src="${resources}/front/images/2.jpg" class="wap-list-tp" alt="" />
+									<input type="text" name="checkCode" id="verify" value="" placeholder="输入验证码" class="wap-list-con" />
+								</div>
+								<button type="button" class="getCode getCode2 fr" id="gain"><#if language=="1">获取验证码<#else>Get the verifying code
+								</#if></button><span class="ss" style="display: none;"></span>
+
+							</div>
+
+							<div class="wap-list clearfix">
+								<img src="${resources}/front/images/3.jpg" class="wap-list-tp" alt="" />
+								<input type="password" name="uspass" id="password" value="" placeholder="密码" class="wap-list-con" />
+							</div>
+							<div class="wap-list clearfix">
+								<img src="${resources}/front/images/3.jpg" class="wap-list-tp" alt="" />
+								<input type="password" name="" id="password2" value="" placeholder="确定密码" class="wap-list-con" />
+							</div>
+						</div>
+
+						<div class="denlu" id="sub">确认重置</div>
+						<!--邀请码-->
+						<input type="hidden" name="code" id="code" value="" />
+
+					</div>
+				</form>
+			</div>
+
+		</div>
+		<!--容器  end-->
+
+		<script>
+			//验证码倒计时
+			function downTime(secs) {
+				$(".ss").html(secs);
+				$(".getCode").html(secs + "s重新获取");
+				$(".getCode").attr("disabled", "disabled");
+				if(--secs > -1) {
+					setTimeout("downTime(" + secs + ")", 1000);
+				} else {
+					$(".ss").html("");
+					$(".getCode").removeAttr("disabled").html("获取验证码");
+				}
+			}
+			$(".getCode").click(function() {
+				var secs = parseInt($(".ss").html());
+				if(isNaN(secs)) {
+					downTime(60);
+				} else {
+					return false;
+				}
+			});
+		</script>
+
+		<script>
+			//短信验证
+			$(function() {
+				$("#gain").click(function() {
+					var shjh = document.getElementById("number").value;
+					if(shjh==""){
+						alert("请稍后重新填写手机号");
+						return false;
+					}else{
+					$.ajax({
+						type: "GET",
+						url: '${request}/users/registeryz.do',
+						data: {
+							usname: shjh
+						},
+						success: function(data) {
+							if(data.code=="1") {
+								time = data.time;
+								checkCode = data.yazheng;
+								alert("短信发送成功，请查收");
+								$("#code").val(data.yanzheng);
+							} else {
+								alert("当前手机号未注册");
+							}
+						},
+						error: function(info) {
+							console.log(info)
+							alert(info);
+						}
+
+					})
+					}
+				})
+
+			})
+		</script>
+
+		<!--表单效验-->
+		<script>
+		var time =0;
+		var checkCode =0;
+			$(function() {
+				var title1 = document.getElementById("title");
+
+				$("#sub").click(function() {
+
+					if(number.value == "") {
+						$("#title em").html("手机号不能为空！");
+						title1.style.display = "block";
+						return false;
+					} else if($("#number").val().length < 11 || $("#number").val().length > 12) {
+						$("#title em").html("手机号有11位！");
+						title1.style.display = "block";
+						return false;
+					} else {
+						$("#title em").html("");
+						title1.style.display = "none";
+					}
+
+					if(verify.value == "") {
+						$("#title em").html("验证码不能为空!");
+						title1.style.display = "block";
+						return false;
+					}
+					/* else if($("#code").val() != verify.value) {
+						$("#title em").html("验证码不存在!");
+						title1.style.display = "block";
+						return false;
+					} */
+					else if($("#verify").val().length < 6 || $("#verify").val().length > 7) {
+						$("#title em").html("密码长度为6位");
+						title1.style.display = "block";
+						return false;
+					} else {
+						$("#title em").html("");
+						title1.style.display = "none";
+					}
+
+					if(password.value == "") {
+						$("#title em").html("密码不能为空！");
+						title1.style.display = "block";
+
+						return false;
+					} else if($("#password").val().length < 5 || $("#password").val().length > 10) {
+						$("#title em").html("密码长度为5-10位");
+						title1.style.display = "block";
+
+						return false;
+					} else {
+						$("#title em").html("");
+						title1.style.display = "none";
+					}
+
+					if(password2.value !== password.value) {
+						$("#title em").html("两次密码不一样！");
+						title1.style.display = "block";
+						return false;
+					} else {
+						$("#title emr").html("");
+						title1.style.display = "none";
+					}
+
+					var phone = $("#number").val();
+					var pwd = $("#password").val();
+					var pon = $("#pon").val()
+					var city = $("#city").val()
+					var yaoqingren = $("#yaoqingren").val()
+
+					$.ajax({
+						type: "POST",
+						url: '${request}/users/uppass.do',
+						data:{/* $('#form1').serialize() */// 你的formid
+							usname:$("#number").val(),
+							checkCode:$("#verify").val(),
+							uspass: $("#password").val(),
+							random: time,
+							validate:register(checkCode,time)
+						},// 你的formid
+						success: function(data) {
+							alert(data.msg);
+							if(data.code=="1") {
+								window.location.href="${request}/users/loginq.do";
+							}
+						}
+					})
+
+				})
+			})
+		</script>
+
+	</body>
+
+</html>

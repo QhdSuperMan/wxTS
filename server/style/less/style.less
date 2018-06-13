@@ -86,7 +86,7 @@ html::-webkit-scrollbar {display:none}
                 width:100%;
                 text-align:center;
                 li{
-                    width:1px;
+                    width:2px;
                     background-color:transparent;
                     border-top:solid 10px white;
                     border-bottom:solid 10px white;
@@ -308,6 +308,7 @@ html::-webkit-scrollbar {display:none}
 .body {
     width:100%;
     .bodyList {
+        overflow:hidden;
         padding:10px 0px;
         width:1200px;
         margin:50px auto;
@@ -315,6 +316,9 @@ html::-webkit-scrollbar {display:none}
         img {
             margin:20px 40px 00px 20px;
             transition:all 1s ease-in-out;
+        }
+        .stImg {
+            width:500px;
         }
         .Fleft {
             transform: translate3d(-500px,0px,0px);
@@ -326,7 +330,7 @@ html::-webkit-scrollbar {display:none}
         }
         .rotate {
             opacity:0;
-            margin:10px;
+            margin:10px 40px 10px 10px;
             width:430px;
             height:430px;
             background: url('../../images/img2.png') no-repeat;
@@ -362,7 +366,7 @@ html::-webkit-scrollbar {display:none}
             }
         }
         .body_alt_right {
-            width: 100%;
+            width: 90%;
             line-height: @fontSize * 3;
             padding:10px 0px;
             transition:all 1s ease-in-out;
@@ -394,14 +398,21 @@ html::-webkit-scrollbar {display:none}
                 line-height: 35px;
             }
         }
+        .lastbodytext {
+            padding-top:50px;
+        }
         .active {
             transform: translate3d(0px,0px,0px);
             opacity:1;
+        }
+        .hzbodyList {
+            padding-top:100px;
         }
     }
     .team {
         width:100%;
         margin:100px 0px;
+        overflow:hidden;
         h1 {
             margin-bottom:20px;
             font-family: 'Insignia';
@@ -418,19 +429,23 @@ html::-webkit-scrollbar {display:none}
         }
         .swiper-slide {
             img {
-                width:100%;
+                width:80%;
+                display:block;
+                margin:0px auto;
             }
             h2 {
                 text-align:center;
             }
             p {
                 text-align:center;
+                font-size:@fontSize;
             }
         }
     }
     .Consultant {
         width:100%;
         margin:200px 0px;
+        overflow:hidden;
         h1 {
             margin-bottom:20px;
             font-family: 'Insignia';
@@ -446,13 +461,17 @@ html::-webkit-scrollbar {display:none}
         }
         .swiper-slide {
             img {
-                width:100%;
+                width:80%;
+                display:block;
+                margin:0px auto;
             }
             h2 {
                 text-align:center;
+                font-size:@fontSize * 1.5;    
             }
             p {
                 text-align:center;
+                font-size:@fontSize;
             }
         }
     }
@@ -484,8 +503,10 @@ html::-webkit-scrollbar {display:none}
         }
     }
     .logom {
+        overflow:hidden;
         width:100%;
-        margin:50px 0px;
+        margin:0px;
+        margin-top:50px;
         background-color:white;
         text-align:center;
         .logom_title {
@@ -495,11 +516,10 @@ html::-webkit-scrollbar {display:none}
         }
         span {
             line-height:200px;
-            width:200px;
             height:200px;
             background-color:rgb(153,157,159);
             display:inline-block;
-            margin:0px 20px;
+            margin:0px 0px;
             img {
                 width:100px;
             }
@@ -525,13 +545,13 @@ html::-webkit-scrollbar {display:none}
         width:100%;
         .bodyList {
             min-height:500px;
-            margin-top:50px;
+            margin:50px 30px 0px 30px;
             width:100%;
             img {
-                max-width:300px;
+                max-width:400px;
             }
             .body_alt_right {
-                width:100%;
+                width:90%;
             }
             .body_alt_left {
                 margin-left:0px;
@@ -592,6 +612,12 @@ html::-webkit-scrollbar {display:none}
                     width:100%;
                     height:300px;
                     margin:0px;
+                    h2 {
+                        font-size:@fontSize * 1.5;    
+                    }
+                    p {
+                        font-size:@fontSize;
+                    }
                 }
             }
         }
@@ -610,10 +636,11 @@ html::-webkit-scrollbar {display:none}
         }
         .h_center {
             width:100%;
-            top:280px;
+            top:400px;
             p {
                 font-size:@fontSize * 2;
-                padding-bottom:8px;
+                padding-bottom:16px;
+                letter-spacing: 10px;
             }
             p:nth-child(3) {
                 font-size:@fontSize * 3;
@@ -653,10 +680,9 @@ html::-webkit-scrollbar {display:none}
     .body {
         width:100%;
         .bodyList {
-            margin-top:50px;
             width:100%;
             .body_alt_right {
-                width:100%;
+                width:90%;
                 h1 {
                     font-size:@fontSize *2
                 }
@@ -666,7 +692,7 @@ html::-webkit-scrollbar {display:none}
             }
             .body_alt_left {
                 margin-left:0px;
-                width:100%;
+                width:90%;
                 h1 {
                     font-size:@fontSize *2
                 }
@@ -724,15 +750,18 @@ html::-webkit-scrollbar {display:none}
             }
         }
         .logom {
+            margin-bottom:10px;
             .logom_title {
                 font-size:@fontSize * 2;
                 text-align:center;
                 margin-bottom:20px;
             }
             span {
-                padding:5px;
+                height:60px;
+                line-height:60px;
                 img {
                     width:50px;
+                    height:50px;
                 }
             }
         }
@@ -748,19 +777,48 @@ html::-webkit-scrollbar {display:none}
                 display:none;
             }
         }
+        .h_center {
+            width:100%;
+            top:300px;
+            p {
+                font-size:@fontSize * 1.5;
+                padding-bottom:16px;
+                letter-spacing: 0px;
+            }
+            p:nth-child(3) {
+                font-size:@fontSize * 2;
+            }
+            .h_btn {
+                font-size: @fontSize * 1;
+                width:150px;
+                height:44px;
+                line-height:44px;
+                margin-top:10px;
+            }
+        }
     }
     .body {
         .bodyList {
+            margin:50px 0px;
             img {
                 float:none;
-                width:500px;
+                width:300px;
                 display:block;
                 margin:10px auto;
+            }
+            .stImg {
+                width:310px;
             }
             .rotate {
                 float:none;
                 display:block;
                 margin:10px auto;
+            }
+            .body_alt_right {
+                width:100%;
+            }
+            .body_alt_left {
+                width:100%;
             }
         }
         .team {
