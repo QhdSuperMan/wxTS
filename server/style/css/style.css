@@ -92,6 +92,19 @@ a:focus {
 .footer .footerR span {
   margin: 0px 5px;
 }
+.footer .footerR span i {
+  font-size: 28px;
+  color: #0EA2A4;
+}
+.footer .footerR span:first-child {
+  margin-left: 0px;
+}
+.footer .footerR span:first-child i {
+  color: #537BBC;
+}
+.footer .footerR span:nth-child(3) i {
+  color: #1284C7;
+}
 .footer .footerR span:last-child {
   display: inline-block;
   height: 50px;
@@ -881,16 +894,30 @@ html::-webkit-scrollbar {
   }
   .header .nav .logoText {
     margin-top: 30px;
+    font-size: 20px;
   }
   .header .nav .navList {
     float: right;
     margin-top: 10px;
   }
+  .header .nav .smallnavList {
+    font-size: 20px;
+    top: 80px;
+  }
   .header .nav .smallScreenBtn {
     margin-top: 30px;
   }
-  .header .nav .smallnavList {
-    top: 80px;
+  .header .nav .smallScreenBtn .smallhr {
+    margin-bottom: 23px;
+    width: 30px;
+  }
+  .header .nav .smallScreenBtn .Leftsmallhr {
+    width: 10px;
+    top: 12px;
+  }
+  .header .nav .smallScreenBtn .Rightsmallhr {
+    width: 10px;
+    top: 12px;
   }
   .body {
     width: 100%;

@@ -92,6 +92,19 @@ a:focus {
 .footer .footerR span {
   margin: 0px 5px;
 }
+.footer .footerR span i {
+  font-size: 28px;
+  color: #0EA2A4;
+}
+.footer .footerR span:first-child {
+  margin-left: 0px;
+}
+.footer .footerR span:first-child i {
+  color: #537BBC;
+}
+.footer .footerR span:nth-child(3) i {
+  color: #1284C7;
+}
 .footer .footerR span:last-child {
   display: inline-block;
   height: 50px;

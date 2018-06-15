@@ -423,6 +423,49 @@ var classKu = function () {
                 this.delClass(img[0], 'active');
                 this.delClass(text[0], 'active');
             }
+        },
+        // 上传的方法 
+        upload: function upload (url, el, type, size, success, err, progess) {
+            el.onchange = function (event) {
+                var event = window.event || event || arguments.callee.caller.arguments[0],file = event.target.files[0],result;
+                if (file.type.indexOf(type) === -1) {
+                    result = {
+                        code: -1,
+                        msg: '请上传' + type + '类型文件'
+                    }
+                    err(result)
+                    return
+                }
+                if (file.size / 1000 > size) {
+                    result = {
+                        code: -1,
+                        msg: '请上传小于' + size + 'kb文件'
+                    }
+                    err(result)
+                    return
+                }
+                var req = new XMLHttpRequest(),form = new FormData();
+                form.append('file',file)
+                req.open('POST', url)
+                req.onreadystatechange = function () {
+                    if (req.status === 200 && req.readyState === 4) {
+                        result = {
+                            code: 0,
+                            msg: req.responseText
+                        }
+                        success(result)
+                    }
+                }
+                req.upload.onprogress = function (evt) {
+                    if (evt.lengthComputable) {
+                        var percentComplete = Math.round(evt.loaded * 100 / evt.total);
+                        progess(percentComplete)
+                    }else {
+                        document.getElementById("show"+fileId+"Me").innerHTML = '无法计算';
+                    }
+                }
+                req.send(form)
+            }
         }
     };
     (function() {
