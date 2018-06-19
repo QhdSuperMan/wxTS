@@ -477,7 +477,7 @@ html::-webkit-scrollbar {display:none}
     }
     .banner {
         background-color:black;
-        padding:50px 0px;
+        padding:40px 0px;
         .swiper-container {
             line-height:500px;
             border-radius:10px;
@@ -485,6 +485,9 @@ html::-webkit-scrollbar {display:none}
             height:500px;
             text-align:center;
             background-color:white;
+            .swiper-slide {
+                width:100%;
+            }
         }
         .banner_news {
             height:50px;
@@ -500,6 +503,11 @@ html::-webkit-scrollbar {display:none}
             p:last-child {
                 font-size:16px;
             }
+        }
+        img {
+            margin-top:-5px;
+            width:100%;
+            height:100%;
         }
     }
     .logom {
@@ -749,20 +757,20 @@ html::-webkit-scrollbar {display:none}
                     }
                 }
             }
-            .Consultant {
-                margin:50px 0px;
-                width:100%;
-                height:600px;
-                h1 {
-                    font-size:@fontSize * 2;
-                }
-                .ConsultantItem {
-                    width:80%;
-                    .swiper-slide {
-                        width:100%;
-                        height:300px;
-                        margin:0px;
-                    }
+        }
+        .Consultant {
+            margin:10px 0px;
+            width:100%;
+            height:400px;
+            h1 {
+                font-size:@fontSize * 2;
+            }
+            .ConsultantItem {
+                width:80%;
+                .swiper-slide {
+                    width:100%;
+                    height:300px;
+                    margin:0px;
                 }
             }
         }
@@ -780,6 +788,36 @@ html::-webkit-scrollbar {display:none}
                     width:50px;
                     height:50px;
                 }
+            }
+        }
+        .banner {
+            background-color:black;
+            padding:0px 0px;
+            .swiper-container {
+                line-height:200px;
+                border-radius:0px;
+                height:200px;
+                text-align:center;
+                background-color:white;
+            }
+            .banner_news {
+                height:30px;
+                color:white;
+                p {
+                    line-height: 35px;
+                    margin-left:20%;
+                    height:50px;
+                    color:white;
+                    z-index:2;
+                    font-size:26px;
+                }
+                p:last-child {
+                    font-size:16px;
+                }
+            }
+            img {
+                width:100%;
+                height:100%;
             }
         }
     }

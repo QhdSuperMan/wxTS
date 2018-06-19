@@ -89,30 +89,30 @@ a:focus {
   height: 50px;
   cursor: pointer;
 }
-.footer .footerR span {
+.footer .footerR a {
   margin: 0px 5px;
 }
-.footer .footerR span i {
+.footer .footerR a i {
   font-size: 28px;
   color: #0EA2A4;
 }
-.footer .footerR span:first-child {
+.footer .footerR a:first-child {
   margin-left: 0px;
 }
-.footer .footerR span:first-child i {
+.footer .footerR a:first-child i {
   color: #537BBC;
 }
-.footer .footerR span:nth-child(3) i {
+.footer .footerR a:nth-child(3) i {
   color: #1284C7;
 }
-.footer .footerR span:last-child {
+.footer .footerR a:last-child {
   display: inline-block;
   height: 50px;
   width: 40px;
   text-align: center;
   background-color: black;
 }
-.footer .footerR span:last-child i {
+.footer .footerR a:last-child i {
   color: white;
   font-size: 30px;
 }
@@ -130,7 +130,7 @@ a:focus {
     height: 40px;
     cursor: pointer;
   }
-  .footer .footerR span:last-child {
+  .footer .footerR a:last-child {
     height: 40px;
     float: right;
   }
